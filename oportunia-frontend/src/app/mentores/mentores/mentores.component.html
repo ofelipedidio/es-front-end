@@ -28,7 +28,12 @@
   <ng-container matColumnDef="action">
     <mat-header-cell *matHeaderCellDef></mat-header-cell>
     <mat-cell *matCellDef="let mentor">
-      <button mat-button color="primary" (click)="onButtonClick(mentor)">
+      <button
+        mat-button
+        color="primary"
+        (click)="onButtonClick(mentor)"
+        class="action"
+      >
         Marcar mentoria!
       </button>
     </mat-cell>
