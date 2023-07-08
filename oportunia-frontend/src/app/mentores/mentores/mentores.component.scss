@@ -1,0 +1,24 @@
+@use "@angular/material" as mat;
+
+.mentor-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.tag {
+  display: inline-block;
+  padding: 4px 8px;
+  background-color: lightgray;
+  border-radius: 16px;
+  margin-right: 4px;
+}
+
+.action {
+  display: inline-block;
+  padding: 4px 8px;
+  background-color: lightgray;
+  border-radius: 16px;
+  margin-right: 4px;
+}
