@@ -4,7 +4,7 @@ import { MentoresModel } from './mentores-model';
 @Injectable({
   providedIn: 'root',
 })
-export class MentoresServiceService {
+export class MentoresService {
   constructor() {}
 
   getMentores(): MentoresModel[] {

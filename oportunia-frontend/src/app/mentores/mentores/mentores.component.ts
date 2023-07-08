@@ -2,6 +2,7 @@
 
 import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { MentoresService } from './mentores-service.service';
 
 @Component({
   selector: 'app-mentors',
@@ -11,9 +12,10 @@ import { MatTableDataSource } from '@angular/material/table';
 export class MentoresComponent {
   dataSource: MatTableDataSource<any>;
   displayedColumns: string[] = ['nameRole', 'tags', 'action'];
+  mentorService: MentoresService = new MentoresService();
 
   constructor() {
-    this.dataSource = new MatTableDataSource(this.mentors);
+    this.dataSource = new MatTableDataSource(this.mentorService.getMentores());
   }
 
   onButtonClick(mentor: any) {
