@@ -12,19 +12,6 @@ export class MentoresComponent {
   dataSource: MatTableDataSource<any>;
   displayedColumns: string[] = ['nameRole', 'tags', 'action'];
 
-  mentors = [
-    {
-      name: 'John Doe',
-      role: 'Senior Mentor',
-      tags: ['JavaScript', 'Angular', 'Web Development'],
-    },
-    {
-      name: 'Jane Smith',
-      role: 'UI/UX Designer',
-      tags: ['User Experience', 'Adobe XD', 'Prototyping'],
-    },
-  ];
-
   constructor() {
     this.dataSource = new MatTableDataSource(this.mentors);
   }

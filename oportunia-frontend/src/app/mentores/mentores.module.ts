@@ -8,9 +8,10 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MentoresModelComponent } from './mentores/mentores-model';
 
 @NgModule({
-  declarations: [MentoresComponent],
+  declarations: [MentoresComponent, MentoresModelComponent],
   imports: [
     CommonModule,
     MentoresRoutingModule,
