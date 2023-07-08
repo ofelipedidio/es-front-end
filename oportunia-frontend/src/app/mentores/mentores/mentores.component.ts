@@ -19,7 +19,7 @@ export class MentoresComponent {
   }
 
   onButtonClick(mentor: any) {
-    console.log('Button clicked for:', mentor);
+    console.log(`${mentor} selecionado`);
   }
 
   applyFilter(event: Event) {
