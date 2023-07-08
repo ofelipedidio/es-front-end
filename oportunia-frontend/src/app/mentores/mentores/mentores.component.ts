@@ -12,7 +12,6 @@ export class MentoresComponent {
   dataSource: MatTableDataSource<any>;
   displayedColumns: string[] = ['nameRole', 'tags', 'action'];
 
-  // Mock data for mentors
   mentors = [
     {
       name: 'John Doe',
@@ -24,7 +23,6 @@ export class MentoresComponent {
       role: 'UI/UX Designer',
       tags: ['User Experience', 'Adobe XD', 'Prototyping'],
     },
-    // Add more mentor objects as needed
   ];
 
   constructor() {
@@ -32,7 +30,11 @@ export class MentoresComponent {
   }
 
   onButtonClick(mentor: any) {
-    // Handle button click event here
     console.log('Button clicked for:', mentor);
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }

@@ -6,6 +6,8 @@ import { MentoresComponent } from './mentores/mentores.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [MentoresComponent],
@@ -15,6 +17,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatTableModule,
     MatSortModule,
     MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
 })
 export class MentoresModule {}
