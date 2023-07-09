@@ -1,25 +1,23 @@
-import { Injectable } from '@angular/core';
-import { MentoresModel } from './mentores-model';
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
+import { MentoresModel } from "./mentores-model";
+
+const baseurl = "http://localhost:8080/api/mentors";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class MentoresService {
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
-  getMentores(): MentoresModel[] {
-    const mentors = [
-      {
-        name: 'John Doe',
-        cargo: 'Senior Mentor',
-        tags: ['JavaScript', 'Angular', 'Web Development'],
-      },
-      {
-        name: 'Jane Smith',
-        cargo: 'UI/UX Designer',
-        tags: ['User Experience', 'Adobe XD', 'Prototyping'],
-      },
-    ];
-    return mentors;
+  getMentores(): Observable<Mentors[]> {
+    return this.http.get<Mentors[]>(baseurl);
   }
+}
+
+export interface Mentors {
+  nome: String;
+  cargo: String;
+  tags: String[];
 }

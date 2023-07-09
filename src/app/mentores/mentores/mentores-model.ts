@@ -1,10 +1,18 @@
+import { Mentors } from "./mentores-service.service";
 export class MentoresModel {
-  name: String | undefined;
+  nome: String | undefined;
   cargo: String | undefined;
   tags: String[] | undefined;
-  constructor(name: String, cargo: String, tags: String[]) {
-    this.name = name;
+  constructor(nome: String, cargo: String, tags: String[]) {
+    this.nome = nome;
     this.cargo = cargo;
     this.tags = tags;
+  }
+  static convertPayload(mentoresPayload: Mentors[]): MentoresModel[] {
+    const mentores: MentoresModel[] = [];
+    mentoresPayload.forEach((mentor) => {
+      mentores.push(new MentoresModel(mentor.nome, mentor.cargo, mentor.tags));
+    });
+    return mentores;
   }
 }
