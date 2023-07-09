@@ -1,10 +1,23 @@
-export class MentoresModel {
-  name: String | undefined;
-  cargo: String | undefined;
-  tags: String[] | undefined;
-  constructor(name: String, cargo: String, tags: String[]) {
-    this.name = name;
+export class MentorModel implements MentorInterface {
+  nome: String;
+  cargo: String;
+  tags: String[];
+  constructor(nome: String, cargo: String, tags: String[]) {
+    this.nome = nome;
     this.cargo = cargo;
     this.tags = tags;
   }
+  static convertPayload(mentoresPayload: MentorInterface[]): MentorModel[] {
+    const mentores: MentorModel[] = [];
+    mentoresPayload.forEach((mentor) => {
+      mentores.push(new MentorModel(mentor.nome, mentor.cargo, mentor.tags));
+    });
+    return mentores;
+  }
+}
+
+export interface MentorInterface {
+  nome: String;
+  cargo: String;
+  tags: String[];
 }
