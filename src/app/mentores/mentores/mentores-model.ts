@@ -1,18 +1,23 @@
-import { Mentors } from "./mentores-service.service";
-export class MentoresModel {
-  nome: String | undefined;
-  cargo: String | undefined;
-  tags: String[] | undefined;
+export class MentorModel implements MentorInterface {
+  nome: String;
+  cargo: String;
+  tags: String[];
   constructor(nome: String, cargo: String, tags: String[]) {
     this.nome = nome;
     this.cargo = cargo;
     this.tags = tags;
   }
-  static convertPayload(mentoresPayload: Mentors[]): MentoresModel[] {
-    const mentores: MentoresModel[] = [];
+  static convertPayload(mentoresPayload: MentorInterface[]): MentorModel[] {
+    const mentores: MentorModel[] = [];
     mentoresPayload.forEach((mentor) => {
-      mentores.push(new MentoresModel(mentor.nome, mentor.cargo, mentor.tags));
+      mentores.push(new MentorModel(mentor.nome, mentor.cargo, mentor.tags));
     });
     return mentores;
   }
+}
+
+export interface MentorInterface {
+  nome: String;
+  cargo: String;
+  tags: String[];
 }

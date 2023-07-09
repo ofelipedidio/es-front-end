@@ -1,4 +1,4 @@
-import { MentoresModel } from "./mentores-model";
+import { MentorModel } from "./mentores-model";
 // mentors.component.ts
 
 import { Component } from "@angular/core";
@@ -17,7 +17,7 @@ export class MentoresComponent {
   constructor(private mentorService: MentoresService) {
     this.mentorService.getMentores().subscribe((mentors) => {
       this.dataSource = new MatTableDataSource(
-        MentoresModel.convertPayload(mentors)
+        MentorModel.convertPayload(mentors)
       );
     });
   }
