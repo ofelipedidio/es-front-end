@@ -14,4 +14,7 @@ export class MentoresService {
   getMentores(): Observable<MentorInterface[]> {
     return this.http.get<MentorInterface[]>(baseurl);
   }
+  createMentor(mentor: MentorModel): Observable<any> {
+    return this.http.post(baseurl, mentor);
+  }
 }

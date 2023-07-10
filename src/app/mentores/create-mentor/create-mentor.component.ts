@@ -1,3 +1,4 @@
+import { MentoresService } from "./../mentores/mentores-service.service";
 import { MentorModel } from "./../mentores/mentores-model";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Component } from "@angular/core";
@@ -14,6 +15,12 @@ import { MatChipInputEvent } from "@angular/material/chips";
 export class CreateMentorComponent {
   mentor: MentorModel = new MentorModel("", "", []);
   separatorKeysCodes: number[] = [ENTER, COMMA];
+
+  constructor(
+    private mentorService: MentoresService,
+    private snackBar: MatSnackBar,
+    private router: Router
+  ) {}
 
   remove(tag: String): void {
     const index = this.mentor.tags.indexOf(tag);
@@ -34,6 +41,12 @@ export class CreateMentorComponent {
   }
 
   createMentor(): void {
+    this.mentorService.createMentor(this.mentor).subscribe(() =>
+      this.snackBar.open("Mentor created successfully!", "Dismiss", {
+        duration: 2000,
+      })
+    );
     this.mentor = new MentorModel("", "", []);
+    this.router.navigate([""]);
   }
 }
