@@ -9,9 +9,10 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { HttpClientModule } from "@angular/common/http";
+import { CreateMentorComponent } from './create-mentor/create-mentor.component';
 
 @NgModule({
-  declarations: [MentoresComponent],
+  declarations: [MentoresComponent, CreateMentorComponent],
   imports: [
     CommonModule,
     MentoresRoutingModule,
