@@ -1,5 +1,5 @@
 import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
+import { AsyncPipe, CommonModule, NgFor } from "@angular/common";
 
 import { MentoresRoutingModule } from "./mentores-routing.module";
 import { MentoresComponent } from "./mentores/mentores.component";
@@ -9,7 +9,10 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { HttpClientModule } from "@angular/common/http";
-import { CreateMentorComponent } from './create-mentor/create-mentor.component';
+import { CreateMentorComponent } from "./create-mentor/create-mentor.component";
+import { MatChipsModule } from "@angular/material/chips";
+import { MatIconModule } from "@angular/material/icon";
+import { ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [MentoresComponent, CreateMentorComponent],
@@ -22,6 +25,12 @@ import { CreateMentorComponent } from './create-mentor/create-mentor.component';
     MatFormFieldModule,
     MatInputModule,
     HttpClientModule,
+    MatFormFieldModule,
+    MatChipsModule,
+    NgFor,
+    MatIconModule,
+    ReactiveFormsModule,
+    AsyncPipe,
   ],
 })
 export class MentoresModule {}
