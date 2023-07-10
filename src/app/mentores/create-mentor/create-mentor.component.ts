@@ -1,3 +1,4 @@
+import { MentorModel } from "./../mentores/mentores-model";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
@@ -11,36 +12,28 @@ import { MatChipInputEvent } from "@angular/material/chips";
   styleUrls: ["./create-mentor.component.scss"],
 })
 export class CreateMentorComponent {
-  mentor = {
-    name: "",
-    role: "",
-    tags: [""],
-  };
+  mentor: MentorModel = new MentorModel("", "", []);
   separatorKeysCodes: number[] = [ENTER, COMMA];
-  fruits: string[] = ["Lemon"];
-  fruitCtrl = new FormControl("");
 
-  remove(fruit: string): void {
-    const index = this.fruits.indexOf(fruit);
+  remove(tag: String): void {
+    const index = this.mentor.tags.indexOf(tag);
 
     if (index >= 0) {
-      this.fruits.splice(index, 1);
+      this.mentor.tags.splice(index, 1);
     }
   }
 
   add(event: MatChipInputEvent): void {
     const value = (event.value || "").trim();
 
-    // Add our fruit
     if (value) {
-      this.fruits.push(value);
+      this.mentor.tags.push(value);
     }
 
-    // Clear the input value
     event.chipInput!.clear();
-
-    this.fruitCtrl.setValue(null);
   }
 
-  createMentor(): void {}
+  createMentor(): void {
+    this.mentor = new MentorModel("", "", []);
+  }
 }

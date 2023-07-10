@@ -12,7 +12,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { CreateMentorComponent } from "./create-mentor/create-mentor.component";
 import { MatChipsModule } from "@angular/material/chips";
 import { MatIconModule } from "@angular/material/icon";
-import { ReactiveFormsModule } from "@angular/forms";
+import { FormsModule, NgModel, ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [MentoresComponent, CreateMentorComponent],
@@ -31,6 +31,7 @@ import { ReactiveFormsModule } from "@angular/forms";
     MatIconModule,
     ReactiveFormsModule,
     AsyncPipe,
+    FormsModule,
   ],
 })
 export class MentoresModule {}

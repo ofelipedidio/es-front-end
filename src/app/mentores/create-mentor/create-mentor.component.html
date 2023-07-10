@@ -1,34 +1,33 @@
 <!-- create-mentor.component.html -->
 
-<h2>Create New Mentor</h2>
+<h2>Criar Novo Mentor</h2>
 
 <div>
   <mat-form-field>
-    <input matInput placeholder="Name" />
+    <input matInput placeholder="Name" [(ngModel)]="mentor.nome" />
   </mat-form-field>
 </div>
 
 <div>
   <mat-form-field>
-    <input matInput placeholder="Role" />
+    <input matInput placeholder="Role" [(ngModel)]="mentor.cargo" />
   </mat-form-field>
 </div>
 
 <div>
   <mat-form-field>
-    <mat-label>Favorite Fruits</mat-label>
+    <mat-label>Tags</mat-label>
     <mat-chip-grid #chipGrid aria-label="Fruit selection">
-      <mat-chip-row *ngFor="let fruit of fruits" (removed)="remove(fruit)">
-        {{ fruit }}
-        <button matChipRemove [attr.aria-label]="'remove ' + fruit">
+      <mat-chip-row *ngFor="let tag of mentor.tags" (removed)="remove(tag)">
+        {{ tag }}
+        <button matChipRemove [attr.aria-label]="'remove ' + tag">
           <mat-icon>cancel</mat-icon>
         </button>
       </mat-chip-row>
     </mat-chip-grid>
     <input
-      placeholder="New Fruit..."
-      #fruitInput
-      [formControl]="fruitCtrl"
+      placeholder="Tags.."
+      #tagInput
       [matChipInputFor]="chipGrid"
       [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
       (matChipInputTokenEnd)="add($event)"
