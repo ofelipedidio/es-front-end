@@ -42,11 +42,13 @@ export class CreateMentorComponent {
 
   createMentor(): void {
     this.mentorService.createMentor(this.mentor).subscribe(() =>
-      this.snackBar.open("Mentor created successfully!", "Dismiss", {
+      this.snackBar.open("Mentor criado!", "Dismiss", {
         duration: 2000,
       })
     );
     this.mentor = new MentorModel("", "", []);
-    this.router.navigate([""]);
+    this.router
+      .navigate([""], { skipLocationChange: true })
+      .then(() => this.router.navigate([""]));
   }
 }
