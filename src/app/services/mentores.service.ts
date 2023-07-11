@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { MentorModel, MentorInterface } from "./mentores-model";
+import { MentorInterface, MentorModel } from "../models/mentores-model";
 
 const baseurl = "http://localhost:8080/api/mentors";
 

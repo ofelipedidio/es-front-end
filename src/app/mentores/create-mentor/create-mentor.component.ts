@@ -1,5 +1,5 @@
-import { MentoresService } from "./../mentores/mentores-service.service";
-import { MentorModel } from "./../mentores/mentores-model";
+import { MentoresService } from "../../services/mentores.service";
+import { MentorModel } from "../../models/mentores-model";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";

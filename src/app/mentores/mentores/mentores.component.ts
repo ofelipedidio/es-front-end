@@ -1,9 +1,9 @@
-import { MentorModel } from "./mentores-model";
+import { MentorModel } from "../../models/mentores-model";
 // mentors.component.ts
 
 import { Component } from "@angular/core";
 import { MatTableDataSource } from "@angular/material/table";
-import { MentoresService } from "./mentores-service.service";
+import { MentoresService } from "../../services/mentores.service";
 
 @Component({
   selector: "app-mentors",
