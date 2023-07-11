@@ -1,45 +1,49 @@
-<mat-form-field>
-  <mat-label>Procurar por tag</mat-label>
-  <input
-    matInput
-    (keyup)="applyFilter($event)"
-    placeholder="Procure por uma tag!"
-    #input
-  />
-</mat-form-field>
+<div class="table-container">
+  <mat-form-field>
+    <mat-label>Procurar por tag</mat-label>
+    <input
+      matInput
+      (keyup)="applyFilter($event)"
+      placeholder="Procure por uma tag!"
+      #input
+    />
+  </mat-form-field>
 
-<mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
-  <ng-container matColumnDef="nameRole">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>
-      Nome e Cargo
-    </mat-header-cell>
-    <mat-cell *matCellDef="let mentor">
-      {{ mentor.nome }} - {{ mentor.cargo }}
-    </mat-cell>
-  </ng-container>
+  <mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+    <ng-container matColumnDef="nameRole">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Nome e Cargo
+      </mat-header-cell>
+      <mat-cell *matCellDef="let mentor">
+        {{ mentor.nome }} - {{ mentor.cargo }}
+      </mat-cell>
+    </ng-container>
 
-  <ng-container matColumnDef="tags">
-    <mat-header-cell *matHeaderCellDef mat-sort-header> Tags </mat-header-cell>
-    <mat-cell *matCellDef="let mentor">
-      <span *ngFor="let tag of mentor.tags" class="tag">{{ tag }}</span>
-    </mat-cell>
-  </ng-container>
+    <ng-container matColumnDef="tags">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Tags
+      </mat-header-cell>
+      <mat-cell *matCellDef="let mentor">
+        <span *ngFor="let tag of mentor.tags" class="tag">{{ tag }}</span>
+      </mat-cell>
+    </ng-container>
 
-  <ng-container matColumnDef="action">
-    <mat-header-cell *matHeaderCellDef></mat-header-cell>
-    <mat-cell *matCellDef="let mentor">
-      <button
-        mat-button
-        color="primary"
-        (click)="onButtonClick(mentor)"
-        class="action"
-      >
-        Marcar mentoria!
-      </button>
-    </mat-cell>
-  </ng-container>
+    <ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let mentor">
+        <button
+          mat-button
+          color="primary"
+          (click)="onButtonClick(mentor)"
+          class="action"
+        >
+          Marcar mentoria!
+        </button>
+      </mat-cell>
+    </ng-container>
 
-  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 
-  <mat-row *matRowDef="let mentor; columns: displayedColumns"></mat-row>
-</mat-table>
+    <mat-row *matRowDef="let mentor; columns: displayedColumns"></mat-row>
+  </mat-table>
+</div>
