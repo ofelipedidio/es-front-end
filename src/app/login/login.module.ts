@@ -9,7 +9,8 @@ import { LoginViewComponent } from "./login-view/login-view.component";
 import { MatIconModule } from "@angular/material/icon";
 import { MatButtonModule } from "@angular/material/button";
 import { MatInputModule } from "@angular/material/input";
-
+import { MatRadioModule } from "@angular/material/radio";
+import { MatCardModule } from "@angular/material/card";
 @NgModule({
   declarations: [LoginViewComponent],
   imports: [
@@ -20,6 +21,8 @@ import { MatInputModule } from "@angular/material/input";
     MatButtonModule,
     MatInputModule,
     ReactiveFormsModule,
+    MatRadioModule,
+    MatCardModule,
   ],
 })
 export class LoginModule {}
