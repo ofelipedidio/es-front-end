@@ -12,9 +12,9 @@ export class LoginViewComponent {
 
   getErrorMessage() {
     if (this.email.hasError("required")) {
-      return "You must enter a value";
+      return "Você deve colocar um valor";
     }
 
-    return this.email.hasError("email") ? "Not a valid email" : "";
+    return this.email.hasError("email") ? "Não é email valido" : "";
   }
 }
