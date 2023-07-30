@@ -10,6 +10,7 @@ import { MentoresService } from "../../services/mentores.service";
   templateUrl: "./mentores.component.html",
   styleUrls: ["./mentores.component.scss"],
 })
+
 export class MentoresComponent {
   dataSource: MatTableDataSource<any> = new MatTableDataSource();
   displayedColumns: string[] = ["nameRole", "tags", "action"];
@@ -23,11 +24,24 @@ export class MentoresComponent {
   }
 
   onButtonClick(mentor: any) {
-    console.log(`${mentor} selecionado`);
+    
   }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+}
+
+@Component({
+  selector: 'app-modal',
+  templateUrl: 'mentoria.html',
+  styleUrls: ['mentoria.css'],
+})
+export class ModalComponent {
+  show: boolean = false;
+
+  toggle () {
+    this.show = !this.show;
   }
 }

@@ -14,6 +14,9 @@ import { MatChipsModule } from "@angular/material/chips";
 import { MatIconModule } from "@angular/material/icon";
 import { FormsModule, NgModel, ReactiveFormsModule } from "@angular/forms";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
+import {MatSelectModule} from '@angular/material/select';
+
+import { ModalModule } from './mentores/mentoria';
 
 @NgModule({
   declarations: [MentoresComponent, CreateMentorComponent],
@@ -34,6 +37,9 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
     AsyncPipe,
     FormsModule,
     MatSnackBarModule,
+    FormsModule,
+    ModalModule,
+    MatSelectModule
   ],
 })
 export class MentoresModule {}
