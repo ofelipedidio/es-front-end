@@ -1,16 +1,16 @@
 export class LoginModel implements Login {
-  user: String;
+  email: String;
   password: String;
   isMentor: boolean;
   isMentee: boolean;
 
   constructor(
-    user: String,
+    email: String,
     password: String,
     isMentor: boolean,
     isMentee: boolean
   ) {
-    this.user = user;
+    this.email = email;
     this.password = password;
     this.isMentor = isMentor;
     this.isMentee = isMentee;
@@ -18,7 +18,7 @@ export class LoginModel implements Login {
 }
 
 export interface Login {
-  user: String;
+  email: String;
   password: String;
   isMentor: boolean;
   isMentee: boolean;
