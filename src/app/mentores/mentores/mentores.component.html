@@ -53,12 +53,12 @@
   <form class="example-form">
     <mat-form-field class="example-full-width">
       <mat-label>Duração</mat-label>
-      <input matInput placeholder="Informe o tempo em minutos ou horas">
+      <input matInput [(ngModel)]="modal.mentoria.value.duracao" name="duracao" placeholder="Informe o tempo em minutos ou horas">
     </mat-form-field>
     <br>
     <mat-form-field class="example-full-width">
       <mat-label>Formato</mat-label>
-      <mat-select>
+      <mat-select [(ngModel)]="modal.mentoria.value.formato" name="formato" >
         <mat-option value="one">Chat</mat-option>
         <mat-option value="two">Reunião presencial</mat-option>
         <mat-option value="three">Reunião virtual</mat-option>
@@ -67,18 +67,18 @@
     <br>
     <mat-form-field class="example-full-width">
       <mat-label>Recompensa (opcional)</mat-label>
-      <textarea matInput placeholder="Deseja oferecer alguma recompensa (monetária ou não) ao mentor? Informe o tipo e valor"></textarea>
+      <textarea matInput [(ngModel)]="modal.mentoria.value.recompensa" name="recompensa" placeholder="Deseja oferecer alguma recompensa (monetária ou não) ao mentor? Informe o tipo e valor"></textarea>
     </mat-form-field>
   </form>  
   <button
     mat-button
     color="primary"
-    (click)="modal.toggle();"
+    (click)="modal.sendAndToggle();"
     class="btn-primary">Enviar solicitação</button>
 
   <button
     mat-button
     color="primary"
-    (click)="modal.toggle();"
+    (click)="modal.deleteAndToggle();"
     class="btn-secondary">Cancelar solicitação</button>
 </app-modal> 
