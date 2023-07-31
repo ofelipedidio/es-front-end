@@ -8,6 +8,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./mentores/mentores.module').then((m) => m.MentoresModule),
   },
+  {
+    path: 'mentorias',
+    loadChildren: () =>
+      import('./mentorias/mentorias.module').then((m) => m.MentoriasModule),
+  },
 ];
 
 @NgModule({
