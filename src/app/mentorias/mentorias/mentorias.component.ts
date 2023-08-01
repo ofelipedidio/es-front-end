@@ -1,9 +1,8 @@
-import { MentorModel } from "../../models/mentores-model";
-// mentors.component.ts
+import { MentoriaModel } from "../../models/mentorias-model";
 
 import { Component, Input } from "@angular/core";
 import { MatTableDataSource } from "@angular/material/table";
-import { MentoresService } from "../../services/mentores.service";
+import { MentoriasService } from "../../services/mentorias.service";
 
 import { FormBuilder, FormGroup } from '@angular/forms';
 
@@ -15,12 +14,12 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 
 export class MentoriasComponent {
   dataSource: MatTableDataSource<any> = new MatTableDataSource();
-  displayedColumns: string[] = ["nameRole", "tags", "action"];
+  displayedColumns: string[] = ["mentor", "mentorado", "duracao", "formato", "recompensa"];
 
-  constructor(private mentorService: MentoresService, private formBuilder: FormBuilder) {
-    this.mentorService.getMentores().subscribe((mentors) => {
+  constructor(private mentoriaService: MentoriasService, private formBuilder: FormBuilder) {
+    this.mentoriaService.getMentorias().subscribe((mentorias) => {
       this.dataSource = new MatTableDataSource(
-        MentorModel.convertPayload(mentors)
+        MentoriaModel.convertPayload(mentorias)
       );
     });
   }

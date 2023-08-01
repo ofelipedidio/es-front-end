@@ -1,44 +1,47 @@
 <div class="table-container">
-  <mat-form-field>
-    <mat-label>Procurar por tag</mat-label>
-    <input
-      matInput
-      (keyup)="applyFilter($event)"
-      placeholder="Procure por uma tag!"
-      #input
-    />
-  </mat-form-field>
-
   <mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
-    <ng-container matColumnDef="nameRole">
+    <ng-container matColumnDef="mentor">
       <mat-header-cell *matHeaderCellDef mat-sort-header>
-        Nome e Cargo
+        Mentor
       </mat-header-cell>
       <mat-cell *matCellDef="let mentor">
-        {{ mentor.nome }} - {{ mentor.cargo }}
+        {{ mentor.mentor }}
       </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="tags">
+    <ng-container matColumnDef="mentorado">
       <mat-header-cell *matHeaderCellDef mat-sort-header>
-        Tags
+        Mentorado
       </mat-header-cell>
       <mat-cell *matCellDef="let mentor">
-        <span *ngFor="let tag of mentor.tags" class="tag">{{ tag }}</span>
+        {{ mentor.mentorado }}
       </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="action">
-      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+    <ng-container matColumnDef="duracao">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Duração
+      </mat-header-cell>
       <mat-cell *matCellDef="let mentor">
-        <button
-          mat-button
-          color="primary"
-          
-          class="action"
-        >
-          Marcar mentoria!
-        </button>
+        {{ mentor.duracao }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="formato">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Formato
+      </mat-header-cell>
+      <mat-cell *matCellDef="let mentor">
+        {{ mentor.formato }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="recompensa">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Recompensa
+      </mat-header-cell>
+      <mat-cell *matCellDef="let mentor">
+        {{ mentor.recompensa }}
       </mat-cell>
     </ng-container>
 
