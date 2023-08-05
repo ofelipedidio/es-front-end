@@ -1,3 +1,4 @@
+import { Router } from "@angular/router";
 import { LoginService } from "./../../services/login.service";
 import { Component, Injectable } from "@angular/core";
 import { FormControl, Validators } from "@angular/forms";
@@ -15,8 +16,10 @@ export class LoginViewComponent {
   hide = true;
   email = new FormControl("", [Validators.required, Validators.email]);
   password = new FormControl("", [Validators.required]);
+  isMentor = false;
+  isMentee = false;
 
-  constructor(private service: LoginService) {}
+  constructor(private service: LoginService, private router: Router) {}
 
   getErrorMessage() {
     if (this.email.hasError("required")) {
@@ -28,7 +31,7 @@ export class LoginViewComponent {
 
   login() {
     if (!this.email.hasError) {
-      return "Voce deve inserir um email valid!";
+      return "Voce deve inserir um email valido!";
     }
 
     return this.service
@@ -40,6 +43,10 @@ export class LoginViewComponent {
           false
         )
       )
-      .subscribe((response) => console.log(response));
+      .subscribe((response) => {
+        if (this.isMentee) {
+          this.router.navigate(["/mentores"]);
+        }
+      });
   }
 }
