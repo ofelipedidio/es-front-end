@@ -1,7 +1,7 @@
-import { ReactiveFormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { NgModule } from "@angular/core";
-import { NgIf } from "@angular/common";
+import { NgFor, NgIf } from "@angular/common";
 import { CommonModule } from "@angular/common";
 
 import { LoginRoutingModule } from "./login-routing.module";
@@ -23,6 +23,8 @@ import { MatCardModule } from "@angular/material/card";
     ReactiveFormsModule,
     MatRadioModule,
     MatCardModule,
+    FormsModule,
+    NgFor,
   ],
 })
 export class LoginModule {}

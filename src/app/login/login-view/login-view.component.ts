@@ -16,8 +16,9 @@ export class LoginViewComponent {
   hide = true;
   email = new FormControl("", [Validators.required, Validators.email]);
   password = new FormControl("", [Validators.required]);
-  isMentor = false;
-  isMentee = false;
+  type: string = "";
+  mentorValue = "mentor";
+  menteeValue = "mentee";
 
   constructor(private service: LoginService, private router: Router) {}
 
@@ -33,25 +34,32 @@ export class LoginViewComponent {
     if (!this.email.hasError) {
       return "Voce deve inserir um email valido!";
     }
-
     return this.service
       .login(
         new LoginModel(
           this.email.value || "",
           this.password.value || "",
-          this.isMentor,
-          this.isMentee
+          this.isMentor(),
+          this.isMentee()
         )
       )
       .subscribe((response) => {
-        if (this.isMentee) {
+        if (this.isMentee()) {
           this.router.navigate(["/mentee"]);
-        } else if (this.isMentor) {
+        } else if (this.isMentor()) {
           this.router.navigate(["/mentores"]);
         }
       })
       .add(() => {
         console.error("Not auth");
       });
+  }
+
+  private isMentee(): boolean {
+    return this.type === this.menteeValue;
+  }
+
+  private isMentor(): boolean {
+    return this.type === this.mentorValue;
   }
 }

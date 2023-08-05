@@ -32,11 +32,17 @@
     </mat-form-field>
   </p>
   <p>
-    <mat-radio-group aria-label="Select an option">
-      <mat-radio-button [value]="isMentee" color="primary"
+    <label id="login-type-label">Escolha o seu tipo!</label>
+    <mat-radio-group
+      aria-labelledby="login-type-label"
+      required="true"
+      class="radio-group"
+      [(ngModel)]="type"
+    >
+      <mat-radio-button [value]="mentorValue" color="primary"
         >Mentor</mat-radio-button
       >
-      <mat-radio-button [value]="isMentor" color="primary"
+      <mat-radio-button [value]="menteeValue" color="primary"
         >Mentorado</mat-radio-button
       >
     </mat-radio-group>
