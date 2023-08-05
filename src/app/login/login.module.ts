@@ -11,6 +11,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatInputModule } from "@angular/material/input";
 import { MatRadioModule } from "@angular/material/radio";
 import { MatCardModule } from "@angular/material/card";
+import { MatButtonToggleModule } from "@angular/material/button-toggle";
 @NgModule({
   declarations: [LoginViewComponent],
   imports: [
@@ -24,6 +25,7 @@ import { MatCardModule } from "@angular/material/card";
     MatRadioModule,
     MatCardModule,
     FormsModule,
+    MatButtonToggleModule,
     NgFor,
   ],
 })

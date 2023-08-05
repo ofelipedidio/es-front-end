@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card class="login-div">
   <p>
     <mat-form-field class="form-field">
       <mat-label>Coloque o seu email!</mat-label>
@@ -33,19 +33,19 @@
   </p>
   <p>
     <label id="login-type-label">Escolha o seu tipo!</label>
-    <mat-radio-group
+    <mat-button-toggle-group
       aria-labelledby="login-type-label"
       required="true"
       class="radio-group"
       [(ngModel)]="type"
     >
-      <mat-radio-button [value]="mentorValue" color="primary"
-        >Mentor</mat-radio-button
+      <mat-button-toggle [value]="mentorValue" color="primary"
+        >Mentor</mat-button-toggle
       >
-      <mat-radio-button [value]="menteeValue" color="primary"
-        >Mentorado</mat-radio-button
+      <mat-button-toggle [value]="menteeValue" color="primary"
+        >Mentorado</mat-button-toggle
       >
-    </mat-radio-group>
+    </mat-button-toggle-group>
   </p>
   <p>
     <button mat-raised-button color="primary" class="button" (click)="login()">
