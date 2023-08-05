@@ -1,3 +1,4 @@
+import { UserInterface } from "./../models/user-model";
 import { LoginModel } from "./../models/login-model";
 import { Observable } from "rxjs";
 import { HttpClient } from "@angular/common/http";
@@ -10,7 +11,7 @@ const baseurl = "http://localhost:8080/api/login";
 export class LoginService {
   constructor(private http: HttpClient) {}
 
-  login(loginInfo: LoginModel): Observable<any> {
-    return this.http.post(baseurl, loginInfo);
+  login(loginInfo: LoginModel): Observable<UserInterface> {
+    return this.http.post<UserInterface>(baseurl, loginInfo);
   }
 }

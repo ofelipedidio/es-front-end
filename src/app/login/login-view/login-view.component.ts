@@ -1,3 +1,5 @@
+import { UserModel } from "./../../models/user-model";
+import { UserService } from "./../../services/user.service";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
 import { LoginService } from "./../../services/login.service";
@@ -24,7 +26,8 @@ export class LoginViewComponent {
   constructor(
     private service: LoginService,
     private router: Router,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private userService: UserService
   ) {}
 
   getErrorMessage() {
@@ -70,6 +73,9 @@ export class LoginViewComponent {
           }
         },
         next: (response) => {
+          this.userService.setUser(
+            new UserModel(response.email, response.id, response.token)
+          );
           routing();
         },
       });
