@@ -33,8 +33,12 @@
   </p>
   <p>
     <mat-radio-group aria-label="Select an option">
-      <mat-radio-button value="1" color="primary">Mentor</mat-radio-button>
-      <mat-radio-button value="2" color="primary">Mentorado</mat-radio-button>
+      <mat-radio-button [value]="isMentee" color="primary"
+        >Mentor</mat-radio-button
+      >
+      <mat-radio-button [value]="isMentor" color="primary"
+        >Mentorado</mat-radio-button
+      >
     </mat-radio-group>
   </p>
   <p>

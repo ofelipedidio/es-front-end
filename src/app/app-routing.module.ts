@@ -13,6 +13,11 @@ const routes: Routes = [
     loadChildren: () =>
       import("./mentores/mentores.module").then((m) => m.MentoresModule),
   },
+  {
+    path: "mentee",
+    loadChildren: () =>
+      import("./mentee/mentee.module").then((m) => m.MenteeModule),
+  },
 ];
 
 @NgModule({

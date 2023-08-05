@@ -39,14 +39,19 @@ export class LoginViewComponent {
         new LoginModel(
           this.email.value || "",
           this.password.value || "",
-          false,
-          false
+          this.isMentor,
+          this.isMentee
         )
       )
       .subscribe((response) => {
         if (this.isMentee) {
+          this.router.navigate(["/mentee"]);
+        } else if (this.isMentor) {
           this.router.navigate(["/mentores"]);
         }
+      })
+      .add(() => {
+        console.error("Not auth");
       });
   }
 }
