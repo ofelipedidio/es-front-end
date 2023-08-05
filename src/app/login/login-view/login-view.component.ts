@@ -45,7 +45,7 @@ export class LoginViewComponent {
       )
       .subscribe((response) => {
         if (this.isMentee()) {
-          this.router.navigate(["/mentee"]);
+          this.router.navigate(["/mentee/mentores"]);
         } else if (this.isMentor()) {
           this.router.navigate(["/mentores"]);
         }
