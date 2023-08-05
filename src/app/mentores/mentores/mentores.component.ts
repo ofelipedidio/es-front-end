@@ -1,3 +1,4 @@
+import { UserService } from "./../../services/user.service";
 import { MentorModel } from "../../models/mentores-model";
 // mentors.component.ts
 
@@ -14,7 +15,10 @@ export class MentoresComponent {
   dataSource: MatTableDataSource<any> = new MatTableDataSource();
   displayedColumns: string[] = ["nameRole", "tags", "action"];
 
-  constructor(private mentorService: MentoresService) {
+  constructor(
+    private mentorService: MentoresService,
+    private userService: UserService
+  ) {
     this.mentorService.getMentores().subscribe((mentors) => {
       this.dataSource = new MatTableDataSource(
         MentorModel.convertPayload(mentors)
@@ -23,6 +27,7 @@ export class MentoresComponent {
   }
 
   onButtonClick(mentor: any) {
+    console.log(this.userService.getUser());
     console.log(`${mentor} selecionado`);
   }
 
