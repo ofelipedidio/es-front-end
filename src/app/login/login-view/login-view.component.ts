@@ -1,3 +1,5 @@
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { Router } from "@angular/router";
 import { LoginService } from "./../../services/login.service";
 import { Component, Injectable } from "@angular/core";
 import { FormControl, Validators } from "@angular/forms";
@@ -15,8 +17,15 @@ export class LoginViewComponent {
   hide = true;
   email = new FormControl("", [Validators.required, Validators.email]);
   password = new FormControl("", [Validators.required]);
+  type: string = "";
+  mentorValue = "mentor";
+  menteeValue = "mentee";
 
-  constructor(private service: LoginService) {}
+  constructor(
+    private service: LoginService,
+    private router: Router,
+    private snackBar: MatSnackBar
+  ) {}
 
   getErrorMessage() {
     if (this.email.hasError("required")) {
@@ -28,18 +37,49 @@ export class LoginViewComponent {
 
   login() {
     if (!this.email.hasError) {
-      return "Voce deve inserir um email valid!";
+      return "Voce deve inserir um email valido!";
     }
+
+    const routing = () => {
+      if (this.isMentee()) {
+        this.router.navigate(["/mentee/mentores"]);
+      } else if (this.isMentor()) {
+        this.router.navigate(["/mentores"]);
+      }
+    };
 
     return this.service
       .login(
         new LoginModel(
           this.email.value || "",
           this.password.value || "",
-          false,
-          false
+          this.isMentor(),
+          this.isMentee()
         )
       )
-      .subscribe((response) => console.log(response));
+      .subscribe({
+        error: (err) => {
+          if (err.status === 401) {
+            this.snackBar.open("Senha incorreta!", "Dismiss", {
+              duration: 2000,
+            });
+          } else {
+            this.snackBar.open("Credenciais invalidas!", "Dismiss", {
+              duration: 2000,
+            });
+          }
+        },
+        next: (response) => {
+          routing();
+        },
+      });
+  }
+
+  private isMentee(): boolean {
+    return this.type === this.menteeValue;
+  }
+
+  private isMentor(): boolean {
+    return this.type === this.mentorValue;
   }
 }

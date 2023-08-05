@@ -2,15 +2,4 @@
   <span>Oportunia</span>
 </mat-toolbar>
 
-<mat-sidenav-container class="container">
-  <mat-sidenav #sidenav mode="side" opened="true">
-    <mat-nav-list>
-      <a mat-list-item routerLink="/mentores">Mentores</a>
-      <a mat-list-item routerLink="/mentores/criar-mentor">Criar Mentor</a>
-    </mat-nav-list>
-  </mat-sidenav>
-
-  <mat-sidenav-content>
-    <router-outlet></router-outlet>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+<router-outlet></router-outlet>

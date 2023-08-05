@@ -1,4 +1,5 @@
-<mat-card>
+<mat-card class="login-div">
+  <h2>Bem vindo a Oportunia!</h2>
   <p>
     <mat-form-field class="form-field">
       <mat-label>Coloque o seu email!</mat-label>
@@ -31,11 +32,23 @@
       </button>
     </mat-form-field>
   </p>
+  <h2>
+    <label id="login-type-label">Escolha o tipo de conta</label>
+  </h2>
   <p>
-    <mat-radio-group aria-label="Select an option">
-      <mat-radio-button value="1" color="primary">Mentor</mat-radio-button>
-      <mat-radio-button value="2" color="primary">Mentorado</mat-radio-button>
-    </mat-radio-group>
+    <mat-button-toggle-group
+      aria-labelledby="login-type-label"
+      required="true"
+      class="radio-group"
+      [(ngModel)]="type"
+    >
+      <mat-button-toggle [value]="mentorValue" color="primary"
+        >Mentor</mat-button-toggle
+      >
+      <mat-button-toggle [value]="menteeValue" color="primary"
+        >Mentorado</mat-button-toggle
+      >
+    </mat-button-toggle-group>
   </p>
   <p>
     <button mat-raised-button color="primary" class="button" (click)="login()">
