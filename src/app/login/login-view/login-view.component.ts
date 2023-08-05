@@ -1,3 +1,4 @@
+import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
 import { LoginService } from "./../../services/login.service";
 import { Component, Injectable } from "@angular/core";
@@ -20,7 +21,11 @@ export class LoginViewComponent {
   mentorValue = "mentor";
   menteeValue = "mentee";
 
-  constructor(private service: LoginService, private router: Router) {}
+  constructor(
+    private service: LoginService,
+    private router: Router,
+    private snackBar: MatSnackBar
+  ) {}
 
   getErrorMessage() {
     if (this.email.hasError("required")) {
@@ -34,6 +39,15 @@ export class LoginViewComponent {
     if (!this.email.hasError) {
       return "Voce deve inserir um email valido!";
     }
+
+    const routing = () => {
+      if (this.isMentee()) {
+        this.router.navigate(["/mentee/mentores"]);
+      } else if (this.isMentor()) {
+        this.router.navigate(["/mentores"]);
+      }
+    };
+
     return this.service
       .login(
         new LoginModel(
@@ -43,15 +57,19 @@ export class LoginViewComponent {
           this.isMentee()
         )
       )
-      .subscribe((response) => {
-        if (this.isMentee()) {
-          this.router.navigate(["/mentee/mentores"]);
-        } else if (this.isMentor()) {
-          this.router.navigate(["/mentores"]);
-        }
-      })
-      .add(() => {
-        console.error("Not auth");
+      .subscribe({
+        error: (err) => {
+          if (err.status === 401) {
+            this.snackBar.open("Senha incorreta!", "Dismiss", {
+              duration: 2000,
+            });
+          } else {
+            this.snackBar.open("Credenciais invalidas!", "Dismiss", {
+              duration: 2000,
+            });
+          }
+        },
+        complete: () => routing(),
       });
   }
 

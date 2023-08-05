@@ -1,3 +1,4 @@
+import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { NgModule } from "@angular/core";
@@ -27,6 +28,7 @@ import { MatButtonToggleModule } from "@angular/material/button-toggle";
     FormsModule,
     MatButtonToggleModule,
     NgFor,
+    MatSnackBarModule,
   ],
 })
 export class LoginModule {}
