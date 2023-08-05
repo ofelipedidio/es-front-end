@@ -69,7 +69,9 @@ export class LoginViewComponent {
             });
           }
         },
-        complete: () => routing(),
+        next: (response) => {
+          routing();
+        },
       });
   }
 
