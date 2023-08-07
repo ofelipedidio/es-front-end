@@ -29,14 +29,15 @@ export class RegisterViewComponent {
 
   onSubmit() {
     if (this.registerForm.invalid) {
-      alert("Please fill in all required fields correctly.");
+      alert("Por favor preencha todos os campos necessários");
       return;
     }
 
     if (
-      this.registerForm.value.password !== this.registerForm.value.confirmPassword
+      this.registerForm.value.password !==
+      this.registerForm.value.confirmPassword
     ) {
-      alert("Password and Confirm Password do not match.");
+      alert("As senhas devem ser iguais!");
       return;
     }
 
