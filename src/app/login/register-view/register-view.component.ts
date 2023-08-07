@@ -1,3 +1,6 @@
+import { MenteeService } from "./../../services/mentee.service";
+import { UserService } from "./../../services/user.service";
+import { MentoresService } from "./../../services/mentores.service";
 // register-view.component.ts
 import { Component } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
@@ -15,7 +18,12 @@ export class RegisterViewComponent {
   separatorKeysCodes: number[] = [ENTER, COMMA];
   experiences: string[] = [];
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private mentorService: MentoresService,
+    private userService: UserService,
+    private menteeService: MenteeService
+  ) {
     this.registerForm = this.formBuilder.group({
       name: ["", Validators.required],
       email: ["", [Validators.required, Validators.email]],
