@@ -13,7 +13,12 @@ import { MatInputModule } from "@angular/material/input";
 import { MatRadioModule } from "@angular/material/radio";
 import { MatCardModule } from "@angular/material/card";
 import { MatButtonToggleModule } from "@angular/material/button-toggle";
-import { RegisterViewComponent } from './register-view/register-view.component';
+import { RegisterViewComponent } from "./register-view/register-view.component";
+import { MatNativeDateModule } from "@angular/material/core";
+
+import { MatSelectModule } from "@angular/material/select";
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import { MatChipsModule } from "@angular/material/chips";
 @NgModule({
   declarations: [LoginViewComponent, RegisterViewComponent],
   imports: [
@@ -29,6 +34,23 @@ import { RegisterViewComponent } from './register-view/register-view.component';
     FormsModule,
     MatButtonToggleModule,
     NgFor,
+    MatSnackBarModule,
+    MatButtonModule,
+    MatInputModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
+    MatChipsModule,
+    CommonModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatChipsModule,
+    MatIconModule,
+    ReactiveFormsModule,
+    FormsModule,
     MatSnackBarModule,
   ],
 })

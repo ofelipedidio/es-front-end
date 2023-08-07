@@ -1,1 +1,69 @@
-<p>register-view works!</p>
+<mat-card class="login-div">
+  <!-- register-view.component.html -->
+  <h1>Create Account</h1>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <mat-label>Name:</mat-label>
+      <input matInput formControlName="name" required />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Email:</mat-label>
+      <input matInput formControlName="email" required />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Password:</mat-label>
+      <input matInput type="password" formControlName="password" required />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Confirm Password:</mat-label>
+      <input
+        matInput
+        type="password"
+        formControlName="confirmPassword"
+        required
+      />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Birthdate:</mat-label>
+      <input matInput type="date" formControlName="birthdate" required />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Account Type:</mat-label>
+      <mat-select
+        formControlName="accountType"
+        (selectionChange)="onAccountTypeChange()"
+      >
+        <mat-option value="Mentorado">Mentorado</mat-option>
+        <mat-option value="Mentor">Mentor</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div *ngIf="registerForm.value.accountType === 'Mentor'">
+      <mat-form-field>
+        <mat-label>Experiences:</mat-label>
+        <mat-chip-grid #chipGrid>
+          <mat-chip
+            *ngFor="let experience of experiences"
+            (removed)="removeExperience(experience)"
+          >
+            {{ experience }}
+            <mat-icon matChipRemove>cancel</mat-icon>
+          </mat-chip>
+        </mat-chip-grid>
+        <input
+          matInput
+          [matChipInputFor]="chipGrid"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          (matChipInputTokenEnd)="addExperience($event)"
+        />
+      </mat-form-field>
+    </div>
+
+    <button mat-raised-button type="submit">Create Account</button>
+  </form>
+</mat-card>
