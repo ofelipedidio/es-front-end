@@ -38,8 +38,6 @@ export class RegisterViewComponent {
       return;
     }
 
-    // Here, you can implement your account creation logic and handle the form data
-    // For simplicity, we'll just log the data for now.
     console.log(this.registerForm.value);
   }
 
@@ -53,12 +51,10 @@ export class RegisterViewComponent {
     const input = event.chipInput.inputElement;
     const value = event.value;
 
-    // Add experience only if it is not empty and not a duplicate
     if ((value || "").trim() && !this.experiences.includes(value.trim())) {
       this.experiences.push(value.trim());
     }
 
-    // Reset the input value
     if (input) {
       input.value = "";
     }
