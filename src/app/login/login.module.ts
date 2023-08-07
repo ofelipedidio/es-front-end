@@ -13,8 +13,9 @@ import { MatInputModule } from "@angular/material/input";
 import { MatRadioModule } from "@angular/material/radio";
 import { MatCardModule } from "@angular/material/card";
 import { MatButtonToggleModule } from "@angular/material/button-toggle";
+import { RegisterViewComponent } from './register-view/register-view.component';
 @NgModule({
-  declarations: [LoginViewComponent],
+  declarations: [LoginViewComponent, RegisterViewComponent],
   imports: [
     CommonModule,
     LoginRoutingModule,
