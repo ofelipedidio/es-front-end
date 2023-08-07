@@ -33,7 +33,9 @@ export class RegisterViewComponent {
       return;
     }
 
-    if (this.registerForm.value.password !== this.confirmPassword) {
+    if (
+      this.registerForm.value.password !== this.registerForm.value.confirmPassword
+    ) {
       alert("Password and Confirm Password do not match.");
       return;
     }
