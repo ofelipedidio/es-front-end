@@ -1,0 +1,72 @@
+<mat-card class="login-div">
+  <!-- register-view.component.html -->
+  <h1>Criar Conta</h1>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <mat-label>Nome:</mat-label>
+      <input matInput formControlName="name" required />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Email:</mat-label>
+      <input matInput formControlName="email" required />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Senha:</mat-label>
+      <input matInput type="password" formControlName="password" required />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Confirme a senha:</mat-label>
+      <input
+        matInput
+        type="password"
+        formControlName="confirmPassword"
+        required
+      />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Data de Nascimento:</mat-label>
+      <input matInput type="date" formControlName="birthdate" required />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Tipo:</mat-label>
+      <mat-select
+        formControlName="accountType"
+        (selectionChange)="onAccountTypeChange()"
+      >
+        <mat-option value="Mentorado">Mentorado</mat-option>
+        <mat-option value="Mentor">Mentor</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div *ngIf="registerForm.value.accountType === 'Mentor'">
+      <mat-form-field>
+        <mat-label>Experiencias:</mat-label>
+        <mat-chip-grid #chipGrid>
+          <mat-chip
+            *ngFor="let experience of experiences"
+            (removed)="removeExperience(experience)"
+          >
+            {{ experience }}
+            <mat-icon matChipRemove>cancel</mat-icon>
+          </mat-chip>
+        </mat-chip-grid>
+        <input
+          matInput
+          [matChipInputFor]="chipGrid"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          (matChipInputTokenEnd)="addExperience($event)"
+        />
+      </mat-form-field>
+    </div>
+    <p>
+      <button mat-raised-button color="primary" class="button" type="submit">
+        Criar Conta!
+      </button>
+    </p>
+  </form>
+</mat-card>

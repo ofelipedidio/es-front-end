@@ -1,3 +1,4 @@
+import { UserService } from "./../../services/user.service";
 import { MentorModel } from "../../models/mentores-model";
 import { MentoriaModel } from "../../models/mentorias-model";
 // mentors.component.ts
@@ -21,12 +22,24 @@ export class MentoresComponent {
   dataSource: MatTableDataSource<any> = new MatTableDataSource();
   displayedColumns: string[] = ["nameRole", "tags", "action"];
 
-  constructor(private mentorService: MentoresService, private formBuilder: FormBuilder) {
+
+  constructor(
+    private mentorService: MentoresService,
+    private userService: UserService,
+    private formBuilder: FormBuilder
+  ) {
+
     this.mentorService.getMentores().subscribe((mentors) => {
       this.dataSource = new MatTableDataSource(
         MentorModel.convertPayload(mentors)
       );
     });
+  }
+
+
+  onButtonClick(mentor: any) {
+    console.log(this.userService.getUser());
+    console.log(`${mentor} selecionado`);
   }
 
   applyFilter(event: Event) {
