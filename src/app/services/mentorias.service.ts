@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { MentoriaInterface, MentoriaModel } from "../models/mentorias-model";
 
-const baseurl = "http://localhost:8080/api/mentors/mentorias";
+const baseurl = "http://localhost:8080/api/mentorias";
 
 @Injectable({
   providedIn: "root",
