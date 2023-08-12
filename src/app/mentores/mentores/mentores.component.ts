@@ -23,6 +23,8 @@ export class MentoresComponent {
   ) {
 
     this.mentorService.getMentores().subscribe((mentors) => {
+      console.log(mentors);
+
       this.dataSource = new MatTableDataSource(
         MentorModel.convertPayload(mentors)
       );

@@ -9,7 +9,6 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { HttpClientModule } from "@angular/common/http";
-import { CreateMentorComponent } from "./create-mentor/create-mentor.component";
 import { MatChipsModule } from "@angular/material/chips";
 import { MatIconModule } from "@angular/material/icon";
 import { FormsModule, NgModel, ReactiveFormsModule } from "@angular/forms";
@@ -22,6 +21,7 @@ import { ModalComponent } from './mentores/modal/modal.component';
 
 @NgModule({
   declarations: [MentoresComponent, CreateMentorComponent, MentoresHomeComponent, ModalComponent],
+
   imports: [
     CommonModule,
     MentoresRoutingModule,

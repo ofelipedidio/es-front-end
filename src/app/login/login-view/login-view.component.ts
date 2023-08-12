@@ -74,7 +74,16 @@ export class LoginViewComponent {
         },
         next: (response) => {
           this.userService.setUser(
-            new UserModel(response.email, response.id, response.token)
+            new UserModel(
+              response.email,
+              response.id,
+              response.token,
+              response.first_name,
+              response.last_name,
+              response.isMentor,
+              response.isMentee,
+              response.password
+            )
           );
           routing();
         },

@@ -1,3 +1,5 @@
+import { Login } from "./../../models/login-model";
+import { LoginService } from "./../../services/login.service";
 import { MenteeService } from "./../../services/mentee.service";
 import { UserService } from "./../../services/user.service";
 import { MentoresService } from "./../../services/mentores.service";
@@ -6,6 +8,8 @@ import { Component } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatChipInputEvent } from "@angular/material/chips";
 import { COMMA, ENTER } from "@angular/cdk/keycodes";
+import { UserModel } from "src/app/models/user-model";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-register-view",
@@ -22,7 +26,9 @@ export class RegisterViewComponent {
     private formBuilder: FormBuilder,
     private mentorService: MentoresService,
     private userService: UserService,
-    private menteeService: MenteeService
+    private menteeService: MenteeService,
+    private loginService: LoginService,
+    private router: Router
   ) {
     this.registerForm = this.formBuilder.group({
       name: ["", Validators.required],
@@ -32,6 +38,7 @@ export class RegisterViewComponent {
       birthdate: ["", Validators.required],
       accountType: ["Mentorado", Validators.required],
       experiences: [""],
+      cargo: [""],
     });
   }
 
@@ -49,7 +56,30 @@ export class RegisterViewComponent {
       return;
     }
 
-    console.log(this.registerForm.value);
+    const registerForm = this.registerForm.value;
+    const isMentor = registerForm.accountType === "Mentor";
+    //Ajustar back para bater com isso aqui
+    const user = new UserModel(
+      registerForm.email,
+      "",
+      "",
+      registerForm.name,
+      "",
+      isMentor,
+      !isMentor,
+      registerForm.password
+    );
+    if (isMentor) {
+      user.tags = this.experiences;
+      user.cargo = registerForm.cargo;
+    }
+    this.loginService.register(user).subscribe({
+      //Add error handling aqui
+      next: (response) => {
+        this.userService.setUser(user);
+        this.routing(isMentor);
+      },
+    });
   }
 
   onAccountTypeChange() {
@@ -78,4 +108,13 @@ export class RegisterViewComponent {
       this.experiences.splice(index, 1);
     }
   }
+
+  //Remover duplicação
+  routing = (isMentor: boolean) => {
+    if (!isMentor) {
+      this.router.navigate(["/mentee/mentores"]);
+    } else if (isMentor) {
+      this.router.navigate(["/mentores"]);
+    }
+  };
 }
