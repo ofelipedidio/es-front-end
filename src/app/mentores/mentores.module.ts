@@ -18,8 +18,11 @@ import {MatSelectModule} from '@angular/material/select';
 
 import { ModalModule } from './mentores/mentoria';
 
+import { MentoresHomeComponent } from './mentores-home/mentores-home.component';
+
+
 @NgModule({
-  declarations: [MentoresComponent, CreateMentorComponent],
+  declarations: [MentoresComponent, CreateMentorComponent, MentoresHomeComponent],
   imports: [
     CommonModule,
     MentoresRoutingModule,
