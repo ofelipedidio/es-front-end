@@ -18,6 +18,11 @@ const routes: Routes = [
     loadChildren: () =>
       import("./mentee/mentee.module").then((m) => m.MenteeModule),
   },
+  {
+    path: 'mentorias',
+    loadChildren: () =>
+      import('./mentorias/mentorias.module').then((m) => m.MentoriasModule),
+  },
 ];
 
 @NgModule({
