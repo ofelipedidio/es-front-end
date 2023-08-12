@@ -34,7 +34,7 @@
         <button
           mat-button
           color="primary"
-          (click)="onButtonClick(mentor)"
+          (click)="modal.toggle()"
           class="action"
         >
           Marcar mentoria!
@@ -47,3 +47,38 @@
     <mat-row *matRowDef="let mentor; columns: displayedColumns"></mat-row>
   </mat-table>
 </div>
+
+<app-modal #modal>
+  <h1>Detalhes da mentoria</h1>
+  <form class="example-form">
+    <mat-form-field class="example-full-width">
+      <mat-label>Duração</mat-label>
+      <input matInput [(ngModel)]="modal.mentoria.value.duracao" name="duracao" placeholder="Informe o tempo em minutos ou horas">
+    </mat-form-field>
+    <br>
+    <mat-form-field class="example-full-width">
+      <mat-label>Formato</mat-label>
+      <mat-select [(ngModel)]="modal.mentoria.value.formato" name="formato" >
+        <mat-option value="Chat">Chat</mat-option>
+        <mat-option value="Reunião presencial">Reunião presencial</mat-option>
+        <mat-option value="Reunião virtual">Reunião virtual</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="example-full-width">
+      <mat-label>Recompensa (opcional)</mat-label>
+      <textarea matInput [(ngModel)]="modal.mentoria.value.recompensa" name="recompensa" placeholder="Deseja oferecer alguma recompensa (monetária ou não) ao mentor? Informe o tipo e valor"></textarea>
+    </mat-form-field>
+  </form>  
+  <button
+    mat-button
+    color="primary"
+    (click)="modal.sendAndToggle();"
+    class="btn-primary">Enviar solicitação</button>
+
+  <button
+    mat-button
+    color="primary"
+    (click)="modal.deleteAndToggle();"
+    class="btn-secondary">Cancelar solicitação</button>
+</app-modal> 

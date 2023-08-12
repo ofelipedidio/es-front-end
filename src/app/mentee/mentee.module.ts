@@ -12,6 +12,8 @@ import { MatSortModule } from "@angular/material/sort";
 import { MatTableModule } from "@angular/material/table";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatCheckboxModule } from "@angular/material/checkbox";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { MatSelectModule } from "@angular/material/select";
 
 @NgModule({
   declarations: [HomeComponent, MenteeComponent],
@@ -27,6 +29,8 @@ import { MatCheckboxModule } from "@angular/material/checkbox";
     MatCheckboxModule,
     NgFor,
     FormsModule,
+    MatSnackBarModule,
+    MatSelectModule
   ],
 })
 export class MenteeModule {}
