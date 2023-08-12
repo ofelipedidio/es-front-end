@@ -13,14 +13,13 @@ import { MatChipsModule } from "@angular/material/chips";
 import { MatIconModule } from "@angular/material/icon";
 import { FormsModule, NgModel, ReactiveFormsModule } from "@angular/forms";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
-import {MatSelectModule} from '@angular/material/select';
+import { MatSelectModule } from "@angular/material/select";
 
-import { MentoresHomeComponent } from './mentores-home/mentores-home.component';
-import { ModalComponent } from './mentores/modal/modal.component';
-
+import { MentoresHomeComponent } from "./mentores-home/mentores-home.component";
+import { ModalComponent } from "./mentores/modal/modal.component";
 
 @NgModule({
-  declarations: [MentoresComponent, CreateMentorComponent, MentoresHomeComponent, ModalComponent],
+  declarations: [MentoresComponent, MentoresHomeComponent, ModalComponent],
 
   imports: [
     CommonModule,
@@ -40,7 +39,7 @@ import { ModalComponent } from './mentores/modal/modal.component';
     FormsModule,
     MatSnackBarModule,
     FormsModule,
-    MatSelectModule
+    MatSelectModule,
   ],
 })
 export class MentoresModule {}
