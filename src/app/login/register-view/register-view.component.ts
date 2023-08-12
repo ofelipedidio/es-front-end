@@ -65,8 +65,12 @@ export class RegisterViewComponent {
       "",
       isMentor,
       !isMentor,
-      registerForm.password
+      registerForm.password,
+      []
     );
+    if (isMentor) {
+      user.tags = this.experiences;
+    }
     this.loginService.register(user).subscribe({
       next: (response) => {
         this.userService.setUser(user);
