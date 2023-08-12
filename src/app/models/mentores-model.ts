@@ -1,6 +1,7 @@
 import { UserInterface, UserModel } from "./user-model";
 export class MentorModel implements MentorInterface {
   tags: String[];
+  cargo: String;
   first_name: String;
   last_name: String;
   isMentor = true;
@@ -15,15 +16,17 @@ export class MentorModel implements MentorInterface {
     tags: String[],
     email: String,
     id: String,
-    mentor?: any
+    mentor: MentorProperty
   ) {
     this.first_name = first_name;
     this.last_name = last_name;
     this.tags = mentor?.tags;
     this.email = email;
     this.id = id;
+    this.mentor = mentor;
+    this.cargo = mentor?.cargo;
   }
-  mentor: { tags: String[] } = { tags: [] };
+  mentor: MentorProperty;
   static convertPayload(mentoresPayload: MentorInterface[]): MentorModel[] {
     const mentores: MentorModel[] = [];
     mentoresPayload.forEach((mentor) => {
@@ -43,7 +46,10 @@ export class MentorModel implements MentorInterface {
 }
 
 export interface MentorInterface extends UserInterface {
-  mentor: {
-    tags: String[];
-  };
+  mentor: MentorProperty;
+}
+
+interface MentorProperty {
+  tags: String[];
+  cargo: String;
 }

@@ -38,6 +38,7 @@ export class RegisterViewComponent {
       birthdate: ["", Validators.required],
       accountType: ["Mentorado", Validators.required],
       experiences: [""],
+      cargo: [""],
     });
   }
 
@@ -70,6 +71,7 @@ export class RegisterViewComponent {
     );
     if (isMentor) {
       user.tags = this.experiences;
+      user.cargo = registerForm.cargo;
     }
     this.loginService.register(user).subscribe({
       next: (response) => {
