@@ -11,20 +11,26 @@ import { MentoresService } from "../../services/mentores.service";
   templateUrl: "./mentores.component.html",
   styleUrls: ["./mentores.component.scss"],
 })
+
 export class MentoresComponent {
   dataSource: MatTableDataSource<any> = new MatTableDataSource();
   displayedColumns: string[] = ["nameRole", "tags", "action"];
+
 
   constructor(
     private mentorService: MentoresService,
     private userService: UserService
   ) {
+
     this.mentorService.getMentores().subscribe((mentors) => {
+      console.log(mentors);
+
       this.dataSource = new MatTableDataSource(
         MentorModel.convertPayload(mentors)
       );
     });
   }
+
 
   onButtonClick(mentor: any) {
     console.log(this.userService.getUser());

@@ -38,6 +38,7 @@ export class RegisterViewComponent {
       birthdate: ["", Validators.required],
       accountType: ["Mentorado", Validators.required],
       experiences: [""],
+      cargo: [""],
     });
   }
 
@@ -57,6 +58,7 @@ export class RegisterViewComponent {
 
     const registerForm = this.registerForm.value;
     const isMentor = registerForm.accountType === "Mentor";
+    //Ajustar back para bater com isso aqui
     const user = new UserModel(
       registerForm.email,
       "",
@@ -67,7 +69,12 @@ export class RegisterViewComponent {
       !isMentor,
       registerForm.password
     );
+    if (isMentor) {
+      user.tags = this.experiences;
+      user.cargo = registerForm.cargo;
+    }
     this.loginService.register(user).subscribe({
+      //Add error handling aqui
       next: (response) => {
         this.userService.setUser(user);
         this.routing(isMentor);
@@ -102,6 +109,7 @@ export class RegisterViewComponent {
     }
   }
 
+  //Remover duplicação
   routing = (isMentor: boolean) => {
     if (!isMentor) {
       this.router.navigate(["/mentee/mentores"]);
