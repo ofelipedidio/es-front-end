@@ -62,10 +62,18 @@ export class LoginViewComponent {
       )
       .subscribe({
         error: (err) => {
-          if (err.status === 401) {
+          if (err.status === 400) {
             this.snackBar.open("Senha incorreta!", "Dismiss", {
               duration: 2000,
             });
+          } else if (err.status === 401) {
+            this.snackBar.open(
+              "Usuario não possui a role selecionada",
+              "Dismiss",
+              {
+                duration: 200,
+              }
+            );
           } else {
             this.snackBar.open("Credenciais invalidas!", "Dismiss", {
               duration: 2000,
