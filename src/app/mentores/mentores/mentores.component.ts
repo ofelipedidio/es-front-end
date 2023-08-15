@@ -19,7 +19,7 @@ export class MentoresComponent {
 
   constructor(
     private mentorService: MentoresService,
-    private userService: UserService
+    public userService: UserService
   ) {
 
     this.mentorService.getMentores().subscribe((mentors) => {
@@ -34,7 +34,7 @@ export class MentoresComponent {
 
   onButtonClick(mentor: any) {
     console.log(this.userService.getUser());
-    console.log(`${mentor} selecionado`);
+    console.log(`${mentor.email} selecionado`);
   }
 
   applyFilter(event: Event) {

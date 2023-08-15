@@ -34,7 +34,7 @@
         <button
           mat-button
           color="primary"
-          (click)="modal.toggle()"
+          (click)="modal.toggle(mentor.first_name)"
           class="action"
         >
           Marcar mentoria!
@@ -73,7 +73,7 @@
   <button
     mat-button
     color="primary"
-    (click)="modal.sendAndToggle();"
+    (click)="modal.sendAndToggle(userService);"
     class="btn-primary">Enviar solicitação</button>
 
   <button
