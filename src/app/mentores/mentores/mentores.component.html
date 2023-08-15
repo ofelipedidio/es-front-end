@@ -34,7 +34,7 @@
         <button
           mat-button
           color="primary"
-          (click)="modal.toggle(mentor.first_name)"
+          (click)="modal.toggle(mentor.first_name, mentor.email)"
           class="action"
         >
           Marcar mentoria!
@@ -53,12 +53,12 @@
   <form class="example-form">
     <mat-form-field class="example-full-width">
       <mat-label>Duração</mat-label>
-      <input matInput [(ngModel)]="modal.mentoria.value.duracao" name="duracao" placeholder="Informe o tempo em minutos ou horas">
+      <input matInput [(ngModel)]="modal.mentoria.value.duracao" name="duracao" placeholder="Informe o tempo em minutos ou horas" required>
     </mat-form-field>
     <br>
     <mat-form-field class="example-full-width">
       <mat-label>Formato</mat-label>
-      <mat-select [(ngModel)]="modal.mentoria.value.formato" name="formato" >
+      <mat-select [(ngModel)]="modal.mentoria.value.formato" name="formato" required>
         <mat-option value="Chat">Chat</mat-option>
         <mat-option value="Reunião presencial">Reunião presencial</mat-option>
         <mat-option value="Reunião virtual">Reunião virtual</mat-option>

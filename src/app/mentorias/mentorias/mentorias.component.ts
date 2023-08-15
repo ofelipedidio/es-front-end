@@ -5,6 +5,7 @@ import { MatTableDataSource } from "@angular/material/table";
 import { MentoriasService } from "../../services/mentorias.service";
 
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { UserService } from "src/app/services/user.service";
 
 @Component({
   selector: "app-mentorias",
@@ -16,8 +17,8 @@ export class MentoriasComponent {
   dataSource: MatTableDataSource<any> = new MatTableDataSource();
   displayedColumns: string[] = ["mentor", "mentorado", "duracao", "formato", "recompensa"];
 
-  constructor(private mentoriaService: MentoriasService, private formBuilder: FormBuilder) {
-    this.mentoriaService.getMentorias().subscribe((mentorias) => {
+  constructor(private mentoriaService: MentoriasService, private formBuilder: FormBuilder, public user: UserService) {
+    this.mentoriaService.getMentorias(user).subscribe((mentorias) => {
       this.dataSource = new MatTableDataSource(
         MentoriaModel.convertPayload(mentorias)
       );
