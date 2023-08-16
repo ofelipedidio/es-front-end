@@ -1,6 +1,14 @@
 <mat-toolbar color="primary">
   <a href="/" id="return-to-home">Oportunia</a>
+  <div class="spacer"></div>
+  <div *ngIf="isLogged()">
+    <button mat-button [matMenuTriggerFor]="menu">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="logout()">Logout</button>
+    </mat-menu>
+  </div>
 </mat-toolbar>
 
 <router-outlet></router-outlet>
-
