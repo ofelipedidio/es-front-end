@@ -19,9 +19,7 @@ export class UserService {
   getUser() {
     if (!this.currentUser) {
       const storedData = localStorage.getItem(STORED_USER_DATA_KEY);
-      if (storedData) {
-        this.currentUser = JSON.parse(storedData);
-      }
+      this.currentUser = storedData ? JSON.parse(storedData) : undefined;
     }
     return this.currentUser;
   }
