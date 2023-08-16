@@ -1,3 +1,4 @@
+import { DisplayPerfilComponent } from "./../perfil/display-perfil/display-perfil.component";
 import { MentoresComponent } from "./../mentores/mentores/mentores.component";
 import { MenteeComponent } from "./mentee.component";
 import { NgModule } from "@angular/core";
@@ -12,6 +13,10 @@ const routes: Routes = [
       {
         path: "mentores",
         component: MentoresComponent,
+      },
+      {
+        path: "perfil",
+        component: DisplayPerfilComponent,
       },
     ],
   },
