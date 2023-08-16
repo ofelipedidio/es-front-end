@@ -1,7 +1,5 @@
 import { UserService } from "./../../services/user.service";
 import { MentorModel } from "../../models/mentores-model";
-// mentors.component.ts
-
 import { Component } from "@angular/core";
 import { MatTableDataSource } from "@angular/material/table";
 import { MentoresService } from "../../services/mentores.service";

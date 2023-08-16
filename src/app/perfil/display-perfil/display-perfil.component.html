@@ -1,4 +1,8 @@
-<mat-card class="profile-card" *ngIf="user">
+<mat-card class="example-card">
+  <p>Hello Mundo</p>
+</mat-card>
+
+<!-- <mat-card class="profile-card" *ngIf="user">
   <mat-card-header>
     <mat-card-title>View Profile</mat-card-title>
   </mat-card-header>
@@ -28,22 +32,21 @@
   </mat-card-content>
 </mat-card>
 <div class="profile-container">
-    <h2>View Profile</h2>
-    <div class="profile-details">
-      <p><strong>First Name:</strong> {{ user?.first_name }}</p>
-      <p><strong>Last Name:</strong> {{ user?.last_name }}</p>
-      <p><strong>Email:</strong> {{ user?.email }}</p>
-      <p>
-        <strong>Role:</strong>
-        {{ user?.isMentor ? "Mentor" : user?.isMentee ? "Mentorando" : "N/A" }}
-      </p>
-      <p *ngIf="user?.isMentor"><strong>Cargo:</strong> {{ user?.cargo }}</p>
-      <p *ngIf="user?.isMentor">
-        <strong>Tags:</strong> {{ user?.tags?.join(", ") }}
-      </p>
-    </div>
-    <button mat-raised-button color="primary" routerLink="/editar-perfil">
-      Editar
-    </button>
+  <h2>View Profile</h2>
+  <div class="profile-details">
+    <p><strong>First Name:</strong> {{ user?.first_name }}</p>
+    <p><strong>Last Name:</strong> {{ user?.last_name }}</p>
+    <p><strong>Email:</strong> {{ user?.email }}</p>
+    <p>
+      <strong>Role:</strong>
+      {{ user?.isMentor ? "Mentor" : user?.isMentee ? "Mentorando" : "N/A" }}
+    </p>
+    <p *ngIf="user?.isMentor"><strong>Cargo:</strong> {{ user?.cargo }}</p>
+    <p *ngIf="user?.isMentor">
+      <strong>Tags:</strong> {{ user?.tags?.join(", ") }}
+    </p>
   </div>
-  
+  <button mat-raised-button color="primary" routerLink="/editar-perfil">
+    Editar
+  </button>
+</div> -->

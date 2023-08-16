@@ -1,3 +1,4 @@
+import { MatCardModule } from "@angular/material/card";
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
@@ -6,6 +7,6 @@ import { DisplayPerfilComponent } from "./display-perfil/display-perfil.componen
 
 @NgModule({
   declarations: [DisplayPerfilComponent],
-  imports: [CommonModule, PerfilRoutingModule],
+  imports: [CommonModule, PerfilRoutingModule, MatCardModule],
 })
 export class PerfilModule {}

@@ -1,9 +1,9 @@
-import { DisplayPerfilComponent } from "./../perfil/display-perfil/display-perfil.component";
 import { MentoresComponent } from "./../mentores/mentores/mentores.component";
 import { MenteeComponent } from "./mentee.component";
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { HomeComponent } from "./home/home.component";
+import { DisplayPerfilComponent } from "../perfil/display-perfil/display-perfil.component";
 
 const routes: Routes = [
   {

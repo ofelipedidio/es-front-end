@@ -1,4 +1,4 @@
-import { DisplayPerfilComponent } from "./display-perfil/display-perfil.component";
+import DisplayPerfilComponent from "./display-perfil/display-perfil.component";
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 
