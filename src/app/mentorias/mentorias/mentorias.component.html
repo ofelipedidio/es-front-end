@@ -54,6 +54,16 @@
       </mat-cell>
     </ng-container>
 
+    <ng-container matColumnDef="aceitar">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Aceitar?
+      </mat-header-cell>
+      <mat-cell *matCellDef="let mentor">
+        <button mat-button color="primary">Sim</button>
+        <button mat-button color="warn">Não</button>
+      </mat-cell>
+    </ng-container>
+
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 
