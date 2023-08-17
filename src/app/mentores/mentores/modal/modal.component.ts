@@ -45,7 +45,7 @@ export class ModalComponent {
     );
     this.router
       .navigate([""], { skipLocationChange: true })
-      .then(() => this.router.navigate(["/mentorias"]));
+      .then(() => this.router.navigate(["/mentee/mentorias"]));
     this.mentoria.reset();
     this.toggle('', '');
   }
