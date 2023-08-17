@@ -1,3 +1,4 @@
+import { PerfilModule } from "./perfil/perfil.module";
 import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
@@ -36,6 +37,7 @@ import { MatIconModule } from "@angular/material/icon";
     MatFormFieldModule,
     FormsModule,
     MatIconModule,
+    PerfilModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
