@@ -15,7 +15,7 @@ import { UserService } from "src/app/services/user.service";
 
 export class MentoriasComponent {
   dataSource: MatTableDataSource<any> = new MatTableDataSource();
-  displayedColumns: string[] = ["mentor", "mentorado", "duracao", "formato", "recompensa"];
+  displayedColumns: string[] = ["mentor", "mentorado", "duracao", "formato", "recompensa", "status"];
 
   constructor(private mentoriaService: MentoriasService, private formBuilder: FormBuilder, public user: UserService) {
     this.mentoriaService.getMentorias(user).subscribe((mentorias) => {

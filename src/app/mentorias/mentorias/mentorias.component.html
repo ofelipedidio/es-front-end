@@ -45,6 +45,16 @@
       </mat-cell>
     </ng-container>
 
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Status
+      </mat-header-cell>
+      <mat-cell *matCellDef="let mentor">
+        {{ mentor.status }}
+      </mat-cell>
+    </ng-container>
+
+
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 
     <mat-row *matRowDef="let mentor; columns: displayedColumns"></mat-row>
