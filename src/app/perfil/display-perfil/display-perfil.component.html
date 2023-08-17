@@ -1,0 +1,28 @@
+<mat-card class="profile-card" *ngIf="user">
+  <mat-card-header>
+    <mat-card-title>View Profile</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p><strong>First Name:</strong> {{ user?.first_name }}</p>
+    <p><strong>Last Name:</strong> {{ user?.last_name }}</p>
+    <p><strong>Email:</strong> {{ user?.email }}</p>
+    <p>
+      <strong>Role:</strong>
+      {{ user?.isMentor ? "Mentor" : user?.isMentee ? "Mentorando" : "N/A" }}
+    </p>
+    <ng-container *ngIf="user?.isMentor">
+      <p><strong>Cargo:</strong> {{ user?.cargo }}</p>
+      <p><strong>Tags:</strong> {{ user?.tags?.join(", ") }}</p>
+    </ng-container>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="primary" routerLink="/editar-perfil">
+      Editar
+    </button>
+  </mat-card-actions>
+</mat-card>
+<mat-card class="profile-card" *ngIf="!user">
+  <mat-card-content>
+    <p>User not available.</p>
+  </mat-card-content>
+</mat-card>

@@ -20,7 +20,6 @@ import { ModalComponent } from "./mentores/modal/modal.component";
 
 @NgModule({
   declarations: [MentoresComponent, MentoresHomeComponent, ModalComponent],
-
   imports: [
     CommonModule,
     MentoresRoutingModule,
