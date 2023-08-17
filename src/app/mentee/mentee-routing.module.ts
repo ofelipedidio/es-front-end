@@ -3,6 +3,7 @@ import { MenteeComponent } from "./mentee.component";
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { HomeComponent } from "./home/home.component";
+import { DisplayPerfilComponent } from "../perfil/display-perfil/display-perfil.component";
 
 const routes: Routes = [
   {
@@ -12,6 +13,10 @@ const routes: Routes = [
       {
         path: "mentores",
         component: MentoresComponent,
+      },
+      {
+        path: "perfil",
+        component: DisplayPerfilComponent,
       },
     ],
   },

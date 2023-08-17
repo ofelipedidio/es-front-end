@@ -1,3 +1,4 @@
+import { PerfilModule } from "./perfil/perfil.module";
 import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
@@ -12,13 +13,16 @@ import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatListModule } from "@angular/material/list";
 
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { FormsModule } from '@angular/forms';
+import { MatInputModule } from "@angular/material/input";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { FormsModule } from "@angular/forms";
+import { MatMenuModule } from "@angular/material/menu";
+import { MatIconModule } from "@angular/material/icon";
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
+    MatMenuModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -32,6 +36,8 @@ import { FormsModule } from '@angular/forms';
     MatInputModule,
     MatFormFieldModule,
     FormsModule,
+    MatIconModule,
+    PerfilModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

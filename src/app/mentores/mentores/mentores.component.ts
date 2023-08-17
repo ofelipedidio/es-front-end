@@ -1,7 +1,5 @@
 import { UserService } from "./../../services/user.service";
 import { MentorModel } from "../../models/mentores-model";
-// mentors.component.ts
-
 import { Component } from "@angular/core";
 import { MatTableDataSource } from "@angular/material/table";
 import { MentoresService } from "../../services/mentores.service";
@@ -11,26 +9,23 @@ import { MentoresService } from "../../services/mentores.service";
   templateUrl: "./mentores.component.html",
   styleUrls: ["./mentores.component.scss"],
 })
-
 export class MentoresComponent {
   dataSource: MatTableDataSource<any> = new MatTableDataSource();
   displayedColumns: string[] = ["nameRole", "tags", "action"];
-
 
   constructor(
     private mentorService: MentoresService,
     public userService: UserService
   ) {
-
     this.mentorService.getMentores().subscribe((mentors) => {
       console.log(mentors);
+      console.log(this.userService.getUser());
 
       this.dataSource = new MatTableDataSource(
         MentorModel.convertPayload(mentors)
       );
     });
   }
-
 
   onButtonClick(mentor: any) {
     console.log(this.userService.getUser());
