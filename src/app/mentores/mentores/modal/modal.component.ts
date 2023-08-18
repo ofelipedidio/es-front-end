@@ -16,7 +16,7 @@ import { MentorModel } from 'src/app/models/mentores-model';
 export class ModalComponent {
   show: boolean = false;
   @Input() mentoria: any;
-  newMentoria: MentoriaModel = new MentoriaModel("", "", "", "", "", "", "", "");
+  newMentoria: MentoriaModel = new MentoriaModel("", "", "", "", "", "", "", "", "");
   mentorName: String = '';
   mentorEmail: String = '';
 
@@ -36,7 +36,7 @@ export class ModalComponent {
   }
 
   sendAndToggle(user: UserService) {
-    this.newMentoria = new MentoriaModel(this.mentorName, user.getUser()!.first_name, this.mentoria.value.duracao, 
+    this.newMentoria = new MentoriaModel("", this.mentorName, user.getUser()!.first_name, this.mentoria.value.duracao, 
     this.mentoria.value.formato, this.mentoria.value.recompensa, this.mentorEmail, user.getUser()!.email,
     "Em Análise");
     this.mentoriaService.createMentoria(this.newMentoria).subscribe(() =>

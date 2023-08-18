@@ -18,4 +18,8 @@ export class MentoriasService {
   createMentoria(mentoria: MentoriaModel): Observable<any> {
     return this.http.post(baseurl, mentoria);
   }
+  updateMentoriaStatus(id: String, status: String) {
+    const jsonStatus = {"status": status}; 
+    return this.http.put(baseurl + '/' + id, jsonStatus);
+  }
 }

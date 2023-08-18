@@ -59,8 +59,8 @@
         Aceitar?
       </mat-header-cell>
       <mat-cell *matCellDef="let mentor">
-        <button mat-button color="primary">Sim</button>
-        <button mat-button color="warn">Não</button>
+        <button mat-button color="primary" (click)="setMentoriaStatus(mentor._id, 'Aceitada')">Sim</button>
+        <button mat-button color="warn" (click)="setMentoriaStatus(mentor._id, 'Recusada')">Não</button>
       </mat-cell>
     </ng-container>
 

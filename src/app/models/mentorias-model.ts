@@ -1,4 +1,5 @@
 export class MentoriaModel implements MentoriaInterface {
+  _id: String;
   mentor: String;
   mentorado: String;
   duracao: String;
@@ -7,8 +8,9 @@ export class MentoriaModel implements MentoriaInterface {
   mentor_email: String;
   mentorado_email: String;
   status: String;
-  constructor(mentor: String, mentorado: String, duracao: String, formato: String, recompensa: String, 
+  constructor(_id: String, mentor: String, mentorado: String, duracao: String, formato: String, recompensa: String, 
     mentor_email: String, mentorado_email: String, status: String) {
+    this._id = _id;
     this.mentor = mentor;
     this.mentorado = mentorado;
     this.duracao = duracao;
@@ -21,7 +23,7 @@ export class MentoriaModel implements MentoriaInterface {
   static convertPayload(mentoriasPayload: MentoriaInterface[]): MentoriaModel[] {
     const mentorias: MentoriaModel[] = [];
     mentoriasPayload.forEach((mentoria) => {
-      mentorias.push(new MentoriaModel(mentoria.mentor, mentoria.mentorado, 
+      mentorias.push(new MentoriaModel(mentoria._id, mentoria.mentor, mentoria.mentorado, 
         mentoria.duracao, mentoria.formato, mentoria.recompensa, mentoria.mentor_email,
         mentoria.mentorado_email, mentoria.status));
     });
@@ -30,6 +32,7 @@ export class MentoriaModel implements MentoriaInterface {
 }
 
 export interface MentoriaInterface {
+  _id: String,
   mentor: String,
   mentorado: String,
   duracao: String,
