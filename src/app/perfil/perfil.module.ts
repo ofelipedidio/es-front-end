@@ -1,3 +1,5 @@
+import { MatButtonModule } from "@angular/material/button";
+import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatCardModule } from "@angular/material/card";
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
@@ -7,6 +9,6 @@ import { DisplayPerfilComponent } from "./display-perfil/display-perfil.componen
 
 @NgModule({
   declarations: [DisplayPerfilComponent],
-  imports: [CommonModule, PerfilRoutingModule, MatCardModule],
+  imports: [CommonModule, PerfilRoutingModule, MatCardModule, MatButtonModule],
 })
 export class PerfilModule {}
