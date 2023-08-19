@@ -71,7 +71,7 @@ export class RegisterViewComponent {
     this.loginService.register(user).subscribe({
       //Add error handling aqui
       next: (response) => {
-        this.userService.setUser(user);
+        this.userService.setUser(user, isMentor, !isMentor);
         this.routing(isMentor);
       },
     });

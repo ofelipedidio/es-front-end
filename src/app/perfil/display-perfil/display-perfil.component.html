@@ -10,9 +10,9 @@
     <p><strong>Email:</strong> {{ user?.email }}</p>
     <p>
       <strong>Role:</strong>
-      {{ user?.isMentor ? "Mentor" : user?.isMentee ? "Mentorando" : "N/A" }}
+      {{ isMentor() ? "Mentor" : "Mentorando" }}
     </p>
-    <ng-container *ngIf="user?.isMentor">
+    <ng-container *ngIf="isMentor()">
       <p><strong>Cargo:</strong> {{ user?.cargo }}</p>
       <p><strong>Tags:</strong> {{ user?.tags?.join(", ") }}</p>
     </ng-container>
@@ -53,7 +53,7 @@
         </mat-form-field>
       </p>
 
-      <div *ngIf="userForm.value.accountType === 'Mentor'">
+      <div *ngIf="isMentor()">
         <mat-form-field>
           <mat-label>Experiencias:</mat-label>
           <mat-chip-grid #chipGrid>
@@ -75,9 +75,6 @@
         <mat-form-field>
           <mat-label>Cargo</mat-label>
           <input matInput formControlName="cargo" required />
-          {{
-            user?.isMentor ? "Mentor" : user?.isMentee ? "Mentorando" : "N/A"
-          }}
         </mat-form-field>
       </div>
     </form>

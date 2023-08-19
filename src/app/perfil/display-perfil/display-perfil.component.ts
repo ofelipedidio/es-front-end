@@ -14,6 +14,7 @@ import { MatChipInputEvent } from "@angular/material/chips";
 })
 export class DisplayPerfilComponent implements AfterViewInit {
   public user: UserModel | undefined;
+  public role: String | undefined;
   public isEditing: boolean;
   userForm: FormGroup = this.formBuilder.group({});
   separatorKeysCodes: number[] = [ENTER, COMMA];
@@ -25,8 +26,12 @@ export class DisplayPerfilComponent implements AfterViewInit {
   ) {
     this.isEditing = false;
   }
+  public isMentor(): boolean {
+    return this.role == "MENTOR";
+  }
   ngAfterViewInit(): void {
     this.user = this.userService.getUser();
+    this.role = this.userService.getRole();
     if (this.user) {
       this.userForm = this.formBuilder.group(
         this.formFactory.make(
