@@ -23,6 +23,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./mentorias/mentorias.module').then((m) => m.MentoriasModule),
   },
+  {
+    path: 'relatorio',
+    loadChildren: () =>
+      import('./relatorio/relatorio.module').then((m) => m.RelatorioModule),
+  }
 ];
 
 @NgModule({

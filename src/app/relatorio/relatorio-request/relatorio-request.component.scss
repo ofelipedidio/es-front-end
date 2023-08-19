@@ -1,0 +1,52 @@
+.Relatorio -div {
+    max-width: 400px;
+    margin: 2em auto;
+    text-align: center;
+  }
+  
+  .form-field {
+    border: none;
+    padding: 12px 15px;
+    margin: 8px 0;
+    width: 80%;
+  }
+  
+  .button {
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+  }
+  
+  .radio-group {
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    font-size: 15px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+    left: 30%;
+    text-align: center;
+  }
+  
+  h1 {
+    margin-bottom: 20px;
+  }
+  
+  form {
+    width: 300px;
+    margin: 0 auto;
+  }
+  
+  mat-form-field {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  button {
+    margin-top: 10px;
+  }
+  
