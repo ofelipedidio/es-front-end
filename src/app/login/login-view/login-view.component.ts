@@ -47,7 +47,7 @@ export class LoginViewComponent {
       if (this.isMentee()) {
         this.router.navigate(["/mentee/mentores"]);
       } else if (this.isMentor()) {
-        this.router.navigate(["/mentores"]);
+        this.router.navigate(["/mentorias"]);
       }
     };
 

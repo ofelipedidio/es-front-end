@@ -109,7 +109,7 @@ export class RegisterViewComponent {
     if (!isMentor) {
       this.router.navigate(["/mentee/mentores"]);
     } else if (isMentor) {
-      this.router.navigate(["/mentores"]);
+      this.router.navigate(["/mentorias"]);
     }
   };
 }
