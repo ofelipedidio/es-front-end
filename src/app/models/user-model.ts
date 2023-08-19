@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 
 export class UserModel implements UserInterface {
   email: String;
-  id: String;
+  _id: String;
   token: String;
   first_name: String;
   last_name: String;
@@ -25,7 +25,7 @@ export class UserModel implements UserInterface {
     cargo?: String
   ) {
     this.email = email;
-    this.id = id;
+    this._id = id;
     this.token = token;
     this.first_name = first_name;
     this.last_name = last_name;
@@ -43,7 +43,7 @@ export interface UserInterface {
   isMentor: boolean;
   isMentee: boolean;
   email: String;
-  id: String;
+  _id: String;
   token: String;
   password: String;
   tags: String[];

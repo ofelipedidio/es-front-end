@@ -1,3 +1,5 @@
+import { Router } from "@angular/router";
+import { LoginService } from "./../../services/login.service";
 import { UserFormGroupFactory } from "./../../factory/UserFormGroupFactory";
 import { UserModel } from "src/app/models/user-model";
 import { UserService } from "./../../services/user.service";
@@ -6,6 +8,8 @@ import { FormBuilder, FormGroup } from "@angular/forms";
 import { NumberInput } from "@angular/cdk/coercion";
 import { COMMA, ENTER } from "@angular/cdk/keycodes";
 import { MatChipInputEvent } from "@angular/material/chips";
+import { debug } from "tauri-plugin-log-api";
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
   selector: "app-display-perfil",
@@ -22,13 +26,14 @@ export class DisplayPerfilComponent implements AfterViewInit {
   constructor(
     private userService: UserService,
     private formBuilder: FormBuilder,
-    private formFactory: UserFormGroupFactory
+    private formFactory: UserFormGroupFactory,
+    private loginService: LoginService,
+    private router: Router,
+    private snackBar: MatSnackBar
   ) {
     this.isEditing = false;
   }
   public isMentor(): boolean {
-    console.log(this.role);
-
     return this.role == "MENTOR";
   }
   ngAfterViewInit(): void {
@@ -48,6 +53,31 @@ export class DisplayPerfilComponent implements AfterViewInit {
       );
     }
   }
+
+  public onConfirm() {
+    if (this.user) {
+      // this.loginService.update(this.user);
+      this.isEditing = false;
+    }
+  }
+
+  public onDelete() {
+    if (this.user) {
+      this.loginService.delete(this.user._id).subscribe({
+        error: (err) => {
+          console.error(err);
+          this.snackBar.open("Erro na deleção de Usuario!", "Dismiss", {
+            duration: 2000,
+          });
+        },
+        next: () => {
+          this.userService.clearUser();
+          this.router.navigate(["/"]);
+        },
+      });
+    }
+  }
+
   onEdit(): void {
     this.isEditing = true;
   }

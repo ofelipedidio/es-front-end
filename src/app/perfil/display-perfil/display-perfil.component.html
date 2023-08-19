@@ -33,7 +33,7 @@
     <mat-card-title>Perfil</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <form [formGroup]="userForm" (ngSubmit)="onEdit()">
+    <form [formGroup]="userForm" (ngSubmit)="onConfirm()">
       <p>
         <mat-form-field>
           <mat-label>Nome:</mat-label>
@@ -74,13 +74,15 @@
         </mat-form-field>
         <mat-form-field>
           <mat-label>Cargo</mat-label>
-          <input matInput formControlName="cargo" required />
+          <input matInput formControlName="cargo" />
         </mat-form-field>
       </div>
     </form>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-flat-button color="primary" type="submit">Salvar</button>
+    <button mat-flat-button color="primary" (click)="onConfirm()">
+      Salvar
+    </button>
     <button mat-flat-button color="primary" (click)="onCancel()">
       Cancelar
     </button>

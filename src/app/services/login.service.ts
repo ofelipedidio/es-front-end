@@ -21,4 +21,10 @@ export class LoginService {
       registrationInfo
     );
   }
+  update(user: UserModel): Observable<UserInterface> {
+    return this.http.put<UserInterface>(baseurl + "update", user);
+  }
+  delete(id: String): Observable<any> {
+    return this.http.post(baseurl + "delete", { id });
+  }
 }

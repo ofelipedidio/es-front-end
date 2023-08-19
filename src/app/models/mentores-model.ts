@@ -7,7 +7,7 @@ export class MentorModel implements MentorInterface {
   isMentor = true;
   isMentee = false;
   email: String;
-  id: String;
+  _id: String;
   token: String = "";
   password: String = "";
   constructor(
@@ -22,7 +22,7 @@ export class MentorModel implements MentorInterface {
     this.last_name = last_name;
     this.tags = mentor?.tags;
     this.email = email;
-    this.id = id;
+    this._id = id;
     this.mentor = mentor;
     this.cargo = mentor?.cargo;
   }
@@ -36,7 +36,7 @@ export class MentorModel implements MentorInterface {
           mentor.last_name,
           mentor.tags,
           mentor.email,
-          mentor.id,
+          mentor._id,
           mentor.mentor
         )
       );
