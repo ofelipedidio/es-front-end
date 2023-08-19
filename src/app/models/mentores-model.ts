@@ -24,6 +24,9 @@ export class MentorModel implements MentorInterface {
     this.mentor = mentor;
     this.cargo = mentor?.cargo;
   }
+  clone(): UserModel {
+    return { ...this };
+  }
   name: String;
   birthDate: Date;
   mentor: MentorProperty;

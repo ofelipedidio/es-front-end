@@ -22,6 +22,7 @@ export class DisplayPerfilComponent implements AfterViewInit {
   public isEditing: boolean;
   userForm: FormGroup = this.formBuilder.group({});
   separatorKeysCodes: number[] = [ENTER, COMMA];
+  private previousUser: UserModel | undefined;
 
   constructor(
     private userService: UserService,
@@ -39,6 +40,9 @@ export class DisplayPerfilComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.user = this.userService.getUser();
     this.role = this.userService.getRole();
+  }
+
+  private initializeUserForm() {
     if (this.user) {
       this.userForm = this.formBuilder.group(
         this.formFactory.make(
@@ -80,10 +84,13 @@ export class DisplayPerfilComponent implements AfterViewInit {
 
   onEdit(): void {
     this.isEditing = true;
+    this.previousUser = JSON.parse(JSON.stringify(this.user));
+    this.initializeUserForm();
   }
 
   onCancel(): void {
     this.isEditing = false;
+    this.user = this.previousUser;
   }
 
   addExperience(event: MatChipInputEvent): void {
@@ -101,7 +108,7 @@ export class DisplayPerfilComponent implements AfterViewInit {
   }
 
   private getExperiences(): String[] {
-    return this.userForm.get("experiences") as unknown as String[];
+    return this.userForm.value.experiences as String[];
   }
 
   removeExperience(experience: string): void {

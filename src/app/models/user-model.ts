@@ -38,6 +38,10 @@ export class UserModel implements UserInterface {
     this.cargo = cargo ? cargo : "";
   }
   mentor: MentorProperty;
+
+  clone(): UserModel {
+    return { ...this };
+  }
 }
 
 export interface UserInterface {
@@ -52,6 +56,7 @@ export interface UserInterface {
   mentor: MentorProperty;
   tags: String[];
   cargo: String;
+  clone(): UserModel;
 }
 
 export interface MentorProperty {
