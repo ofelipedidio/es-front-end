@@ -1,3 +1,4 @@
+import { UserFormGroupFactory } from "./../../factory/UserFormGroupFactory";
 import { Login } from "./../../models/login-model";
 import { LoginService } from "./../../services/login.service";
 import { MenteeService } from "./../../services/mentee.service";
@@ -28,18 +29,12 @@ export class RegisterViewComponent {
     private userService: UserService,
     private menteeService: MenteeService,
     private loginService: LoginService,
-    private router: Router
+    private router: Router,
+    private formFactory: UserFormGroupFactory
   ) {
-    this.registerForm = this.formBuilder.group({
-      name: ["", Validators.required],
-      email: ["", [Validators.required, Validators.email]],
-      password: ["", Validators.required],
-      confirmPassword: ["", Validators.required],
-      birthdate: ["", Validators.required],
-      accountType: ["Mentorado", Validators.required],
-      experiences: [""],
-      cargo: [""],
-    });
+    this.registerForm = this.formBuilder.group(
+      this.formFactory.make("", "", "", "", "Mentorado", [""], "")
+    );
   }
 
   onSubmit() {
