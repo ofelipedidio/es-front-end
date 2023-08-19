@@ -5,10 +5,8 @@ import { UserModel } from "src/app/models/user-model";
 import { UserService } from "./../../services/user.service";
 import { AfterViewInit, Component } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
-import { NumberInput } from "@angular/cdk/coercion";
 import { COMMA, ENTER } from "@angular/cdk/keycodes";
 import { MatChipInputEvent } from "@angular/material/chips";
-import { debug } from "tauri-plugin-log-api";
 import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
@@ -60,12 +58,25 @@ export class DisplayPerfilComponent implements AfterViewInit {
 
   public onConfirm() {
     if (this.user) {
-      // this.loginService.update(this.user);
-      this.isEditing = false;
+      this.loginService.update(this.user).subscribe({
+        error: (err) => {
+          console.error(err);
+          this.snackBar.open("Erro na edição de Usuario!", "Dismiss", {
+            duration: 2000,
+          });
+        },
+        next: (data) => {
+          this.user = data;
+          this.userService.setUser(data, this.isMentor(), !this.isMentor);
+          this.isEditing = false;
+        },
+      });
     }
   }
 
   public onDelete() {
+    console.log("deleting");
+
     if (this.user) {
       this.loginService.delete(this.user._id).subscribe({
         error: (err) => {

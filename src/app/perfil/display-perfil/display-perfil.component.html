@@ -18,7 +18,9 @@
   </mat-card-content>
   <mat-card-actions>
     <button mat-flat-button color="primary" (click)="onEdit()">Editar</button>
-    <button mat-flat-button color="warn">Excluir Conta</button>
+    <button mat-flat-button color="warn" (click)="onDelete()">
+      Excluir Conta
+    </button>
   </mat-card-actions>
 </mat-card>
 <mat-card class="profile-card" *ngIf="!user">
@@ -48,7 +50,7 @@
       <p>
         <mat-form-field>
           <mat-label>Data de Nascimento:</mat-label>
-          <input matInput type="date" formControlName="birthdate" required />
+          <input matInput type="date" formControlName="birthDate" required />
         </mat-form-field>
       </p>
 
