@@ -45,6 +45,26 @@
       </mat-cell>
     </ng-container>
 
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Status
+      </mat-header-cell>
+      <mat-cell *matCellDef="let mentor">
+        {{ mentor.status }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="aceitar">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Aceitar?
+      </mat-header-cell>
+      <mat-cell *matCellDef="let mentor">
+        <button mat-button color="primary" (click)="setMentoriaStatus(mentor._id, 'Aceitada')">Sim</button>
+        <button mat-button color="warn" (click)="setMentoriaStatus(mentor._id, 'Recusada')">Não</button>
+      </mat-cell>
+    </ng-container>
+
+
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 
     <mat-row *matRowDef="let mentor; columns: displayedColumns"></mat-row>

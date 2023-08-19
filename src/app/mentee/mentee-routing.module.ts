@@ -4,6 +4,7 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { HomeComponent } from "./home/home.component";
 import { DisplayPerfilComponent } from "../perfil/display-perfil/display-perfil.component";
+import { MentoriasComponent } from "../mentorias/mentorias/mentorias.component";
 
 const routes: Routes = [
   {
@@ -18,6 +19,10 @@ const routes: Routes = [
         path: "perfil",
         component: DisplayPerfilComponent,
       },
+      {
+        path: "mentorias",
+        component: MentoriasComponent
+      }
     ],
   },
 ];
