@@ -18,12 +18,8 @@
     </ng-container>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-flat-button color="primary" routerLink="/editar-perfil">
-      Editar
-    </button>
-    <button mat-flat-button color="warn" routerLink="/editar-perfil">
-      Excluir Conta
-    </button>
+    <button mat-flat-button color="primary" (click)="onEdit()">Editar</button>
+    <button mat-flat-button color="warn">Excluir Conta</button>
   </mat-card-actions>
 </mat-card>
 <mat-card class="profile-card" *ngIf="!user">
@@ -32,35 +28,64 @@
   </mat-card-content>
 </mat-card>
 
-<mat-card class="profile-card" *ngIf="user && !isEditing">
+<mat-card class="profile-card" *ngIf="user && isEditing">
   <mat-card-header>
     <mat-card-title>Perfil</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <p><strong>First Name:</strong> {{ user?.first_name }}</p>
-    <p>
-      <strong>Last Name:</strong> {{ user.last_name ? user.last_name : "N/A" }}
-    </p>
-    <mat-form-field>
-      <mat-label>Email</mat-label>
-      <input matInput disabled (value)="(user.email)" />
-    </mat-form-field>
-    <p><strong>Email:</strong> {{ user?.email }}</p>
-    <p>
-      <strong>Role:</strong>
-      {{ user?.isMentor ? "Mentor" : user?.isMentee ? "Mentorando" : "N/A" }}
-    </p>
-    <ng-container *ngIf="user?.isMentor">
-      <p><strong>Cargo:</strong> {{ user?.cargo }}</p>
-      <p><strong>Tags:</strong> {{ user?.tags?.join(", ") }}</p>
-    </ng-container>
+    <form [formGroup]="userForm" (ngSubmit)="onEdit()">
+      <p>
+        <mat-form-field>
+          <mat-label>Nome:</mat-label>
+          <input matInput formControlName="name" required />
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <mat-label>Email:</mat-label>
+          <input matInput formControlName="email" readonly />
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <mat-label>Data de Nascimento:</mat-label>
+          <input matInput type="date" formControlName="birthdate" required />
+        </mat-form-field>
+      </p>
+
+      <div *ngIf="userForm.value.accountType === 'Mentor'">
+        <mat-form-field>
+          <mat-label>Experiencias:</mat-label>
+          <mat-chip-grid #chipGrid>
+            <mat-chip
+              *ngFor="let experience of userForm.value.experiences"
+              (removed)="removeExperience(experience)"
+            >
+              {{ experience }}
+              <mat-icon matChipRemove>cancel</mat-icon>
+            </mat-chip>
+          </mat-chip-grid>
+          <input
+            matInput
+            [matChipInputFor]="chipGrid"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            (matChipInputTokenEnd)="addExperience($event)"
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Cargo</mat-label>
+          <input matInput formControlName="cargo" required />
+          {{
+            user?.isMentor ? "Mentor" : user?.isMentee ? "Mentorando" : "N/A"
+          }}
+        </mat-form-field>
+      </div>
+    </form>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-flat-button color="primary" routerLink="/editar-perfil">
-      Editar
-    </button>
-    <button mat-flat-button color="warn" routerLink="/editar-perfil">
-      Excluir Conta
+    <button mat-flat-button color="primary" type="submit">Salvar</button>
+    <button mat-flat-button color="primary" (click)="onCancel()">
+      Cancelar
     </button>
   </mat-card-actions>
 </mat-card>

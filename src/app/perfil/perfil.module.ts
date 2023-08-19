@@ -1,3 +1,5 @@
+import { MatInputModule } from "@angular/material/input";
+import { MatChipsModule } from "@angular/material/chips";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatButtonModule } from "@angular/material/button";
 import { MatToolbarModule } from "@angular/material/toolbar";
@@ -7,6 +9,7 @@ import { CommonModule } from "@angular/common";
 
 import { PerfilRoutingModule } from "./perfil-routing.module";
 import { DisplayPerfilComponent } from "./display-perfil/display-perfil.component";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [DisplayPerfilComponent],
@@ -16,6 +19,10 @@ import { DisplayPerfilComponent } from "./display-perfil/display-perfil.componen
     MatCardModule,
     MatButtonModule,
     MatFormFieldModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatChipsModule,
+    MatInputModule,
   ],
 })
 export class PerfilModule {}

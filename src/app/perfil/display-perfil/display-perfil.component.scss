@@ -15,6 +15,7 @@
 
 h2 {
   color: #333;
+  margin-bottom: 20px;
 }
 
 strong {
@@ -23,8 +24,23 @@ strong {
 
 p {
   margin: 5px 0;
+  margin-left: 15px;
+}
+
+mat-form-field {
+  width: 20%;
+  margin-bottom: 10px;
+}
+
+.form-field {
+  border: none;
+  padding: 12px 15px;
+  margin: 8px 0;
+  width: 20%;
 }
 
 button {
-  margin-top: 20px;
+  margin-top: 10px;
+  margin-right: 10px;
+  margin-left: 10px;
 }
