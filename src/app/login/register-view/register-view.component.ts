@@ -33,7 +33,7 @@ export class RegisterViewComponent {
     private formFactory: UserFormGroupFactory
   ) {
     this.registerForm = this.formBuilder.group(
-      this.formFactory.make("", "", "", "", "Mentorado", [""], "")
+      this.formFactory.make("", "", "", new Date(), "Mentorado", [""], "")
     );
   }
 
@@ -59,7 +59,7 @@ export class RegisterViewComponent {
       "",
       "",
       registerForm.name,
-      "",
+      registerForm.birthDate,
       isMentor,
       !isMentor,
       registerForm.password

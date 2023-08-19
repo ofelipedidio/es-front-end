@@ -42,10 +42,10 @@ export class DisplayPerfilComponent implements AfterViewInit {
     if (this.user) {
       this.userForm = this.formBuilder.group(
         this.formFactory.make(
-          `${this.user.first_name} ${this.user.last_name}`,
+          this.user.name,
           this.user.email,
           "",
-          "",
+          this.user.birthDate,
           "",
           this.user.tags,
           this.user.cargo

@@ -3,18 +3,17 @@
     <mat-card-title>Perfil</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <p><strong>First Name:</strong> {{ user?.first_name }}</p>
-    <p>
-      <strong>Last Name:</strong> {{ user.last_name ? user.last_name : "N/A" }}
-    </p>
-    <p><strong>Email:</strong> {{ user?.email }}</p>
+    <p><strong>Name</strong> {{ user.name }}</p>
+
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>Birth Date:</strong> {{ user.birthDate }}</p>
     <p>
       <strong>Role:</strong>
       {{ isMentor() ? "Mentor" : "Mentorando" }}
     </p>
     <ng-container *ngIf="isMentor()">
-      <p><strong>Cargo:</strong> {{ user?.cargo }}</p>
-      <p><strong>Tags:</strong> {{ user?.tags?.join(", ") }}</p>
+      <p><strong>Cargo:</strong> {{ user.cargo }}</p>
+      <p><strong>Tags:</strong> {{ user.tags.join(", ") }}</p>
     </ng-container>
   </mat-card-content>
   <mat-card-actions>
