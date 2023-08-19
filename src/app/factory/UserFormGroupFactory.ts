@@ -9,7 +9,7 @@ export class UserFormGroupFactory {
     name: String,
     email: String,
     password: String,
-    birthDate: String,
+    birthDate: Date,
     accountType: String,
     experiences: String[],
     cargo: String
@@ -19,7 +19,7 @@ export class UserFormGroupFactory {
       email: [email, [Validators.required, Validators.email]],
       password: [password, Validators.required],
       confirmPassword: [password, Validators.required],
-      birthdate: [birthDate, Validators.required],
+      birthDate: [birthDate, Validators.required],
       accountType: [accountType, Validators.required],
       experiences: [experiences],
       cargo: [cargo],

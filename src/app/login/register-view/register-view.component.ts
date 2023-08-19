@@ -4,7 +4,6 @@ import { LoginService } from "./../../services/login.service";
 import { MenteeService } from "./../../services/mentee.service";
 import { UserService } from "./../../services/user.service";
 import { MentoresService } from "./../../services/mentores.service";
-// register-view.component.ts
 import { Component } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatChipInputEvent } from "@angular/material/chips";
@@ -25,15 +24,13 @@ export class RegisterViewComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private mentorService: MentoresService,
     private userService: UserService,
-    private menteeService: MenteeService,
     private loginService: LoginService,
     private router: Router,
     private formFactory: UserFormGroupFactory
   ) {
     this.registerForm = this.formBuilder.group(
-      this.formFactory.make("", "", "", "", "Mentorado", [""], "")
+      this.formFactory.make("", "", "", new Date(), "Mentorado", [""], "")
     );
   }
 
@@ -59,7 +56,7 @@ export class RegisterViewComponent {
       "",
       "",
       registerForm.name,
-      "",
+      registerForm.birthDate,
       isMentor,
       !isMentor,
       registerForm.password

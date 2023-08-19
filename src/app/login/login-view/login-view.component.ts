@@ -84,13 +84,16 @@ export class LoginViewComponent {
           this.userService.setUser(
             new UserModel(
               response.email,
-              response.id,
+              response._id,
               response.token,
-              response.first_name,
-              response.last_name,
+              response.name,
+              response.birthDate,
               response.isMentor,
               response.isMentee,
-              response.password
+              response.password,
+              response.mentor,
+              response.mentor?.tags,
+              response.mentor?.cargo
             ),
             this.isMentor(),
             this.isMentee()

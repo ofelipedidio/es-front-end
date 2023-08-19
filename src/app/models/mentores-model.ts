@@ -1,42 +1,45 @@
-import { UserInterface, UserModel } from "./user-model";
+import { MentorProperty, UserInterface, UserModel } from "./user-model";
 export class MentorModel implements MentorInterface {
   tags: String[];
   cargo: String;
-  first_name: String;
-  last_name: String;
   isMentor = true;
   isMentee = false;
   email: String;
-  id: String;
+  _id: String;
   token: String = "";
   password: String = "";
   constructor(
-    first_name: String,
-    last_name: String,
+    name: String,
+    birthDate: Date,
     tags: String[],
     email: String,
     id: String,
     mentor: MentorProperty
   ) {
-    this.first_name = first_name;
-    this.last_name = last_name;
+    this.name = name;
+    this.birthDate = birthDate;
     this.tags = mentor?.tags;
     this.email = email;
-    this.id = id;
+    this._id = id;
     this.mentor = mentor;
     this.cargo = mentor?.cargo;
   }
+  clone(): UserModel {
+    return { ...this };
+  }
+  name: String;
+  birthDate: Date;
   mentor: MentorProperty;
   static convertPayload(mentoresPayload: MentorInterface[]): MentorModel[] {
     const mentores: MentorModel[] = [];
     mentoresPayload.forEach((mentor) => {
       mentores.push(
         new MentorModel(
-          mentor.first_name,
-          mentor.last_name,
+          mentor.name,
+          mentor.birthDate,
           mentor.tags,
           mentor.email,
-          mentor.id,
+          mentor._id,
           mentor.mentor
         )
       );
@@ -45,11 +48,4 @@ export class MentorModel implements MentorInterface {
   }
 }
 
-export interface MentorInterface extends UserInterface {
-  mentor: MentorProperty;
-}
-
-interface MentorProperty {
-  tags: String[];
-  cargo: String;
-}
+export interface MentorInterface extends UserInterface {}

@@ -2,10 +2,10 @@ import { Injectable } from "@angular/core";
 
 export class UserModel implements UserInterface {
   email: String;
-  id: String;
+  _id: String;
   token: String;
-  first_name: String;
-  last_name: String;
+  name: String;
+  birthDate: Date;
   isMentor: boolean;
   isMentee: boolean;
   password: String;
@@ -16,36 +16,50 @@ export class UserModel implements UserInterface {
     email: String,
     id: String,
     token: String,
-    first_name: String,
-    last_name: String,
+    name: String,
+    birthDate: Date,
     isMentor: boolean,
     isMentee: boolean,
     password: String,
+    mentor?: MentorProperty,
     tags?: String[],
     cargo?: String
   ) {
+    this.mentor = mentor ? mentor : { tags: [], cargo: "" };
     this.email = email;
-    this.id = id;
+    this._id = id;
     this.token = token;
-    this.first_name = first_name;
-    this.last_name = last_name;
+    this.name = name;
+    this.birthDate = birthDate;
     this.isMentee = isMentee;
     this.isMentor = isMentor;
     this.password = password;
     this.tags = tags ? tags : [];
     this.cargo = cargo ? cargo : "";
   }
+  mentor: MentorProperty;
+
+  clone(): UserModel {
+    return { ...this };
+  }
 }
 
 export interface UserInterface {
-  first_name: String;
-  last_name: String;
+  name: String;
+  birthDate: Date;
   isMentor: boolean;
   isMentee: boolean;
   email: String;
-  id: String;
+  _id: String;
   token: String;
   password: String;
+  mentor: MentorProperty;
+  tags: String[];
+  cargo: String;
+  clone(): UserModel;
+}
+
+export interface MentorProperty {
   tags: String[];
   cargo: String;
 }
