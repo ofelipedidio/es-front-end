@@ -27,6 +27,8 @@ export class DisplayPerfilComponent implements AfterViewInit {
     this.isEditing = false;
   }
   public isMentor(): boolean {
+    console.log(this.role);
+
     return this.role == "MENTOR";
   }
   ngAfterViewInit(): void {

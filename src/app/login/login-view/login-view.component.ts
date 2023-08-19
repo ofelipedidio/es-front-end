@@ -92,8 +92,8 @@ export class LoginViewComponent {
               response.isMentee,
               response.password
             ),
-            this.isMentee(),
-            this.isMentor()
+            this.isMentor(),
+            this.isMentee()
           );
           routing();
         },
