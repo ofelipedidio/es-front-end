@@ -21,8 +21,8 @@ const routes: Routes = [
       },
       {
         path: "mentorias",
-        component: MentoriasComponent
-      }
+        component: MentoriasComponent,
+      },
     ],
   },
 ];

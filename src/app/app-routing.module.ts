@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
+import { DisplayPerfilComponent } from "./perfil/display-perfil/display-perfil.component";
 
 const routes: Routes = [
   { path: "", pathMatch: "full", redirectTo: "login" },
@@ -19,9 +20,13 @@ const routes: Routes = [
       import("./mentee/mentee.module").then((m) => m.MenteeModule),
   },
   {
-    path: 'mentorias',
+    path: "mentorias",
     loadChildren: () =>
-      import('./mentorias/mentorias.module').then((m) => m.MentoriasModule),
+      import("./mentorias/mentorias.module").then((m) => m.MentoriasModule),
+  },
+  {
+    path: "perfil",
+    component: DisplayPerfilComponent,
   },
 ];
 
