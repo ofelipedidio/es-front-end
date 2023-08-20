@@ -26,10 +26,17 @@ export class MentoriasComponent {
       this.dataSource = new MatTableDataSource(
         MentoriaModel.convertPayload(mentorias)
       );
-    });
-    if (user.getUser()?.isMentor) {
-      this.displayedColumns.push("aceitar");
+      if (user.getUser()?.isMentor) {
+        this.displayedColumns.push("aceitar");
+        
+        this.dataSource.filteredData.forEach(function(item, index, object) {
+          if (item.status !== 'Em Análise') {
+            object.splice(index, 1);
+          }
+        })
+      }
     }
+    );
   }
 
   applyFilter(event: Event) {
