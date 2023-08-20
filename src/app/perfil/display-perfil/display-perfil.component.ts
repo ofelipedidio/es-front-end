@@ -49,8 +49,8 @@ export class DisplayPerfilComponent implements AfterViewInit {
           "",
           this.user.birthDate,
           "",
-          this.user.tags,
-          this.user.cargo
+          this.user.mentor.tags,
+          this.user.mentor.cargo
         )
       );
     }
@@ -58,16 +58,45 @@ export class DisplayPerfilComponent implements AfterViewInit {
 
   public onConfirm() {
     if (this.user) {
-      this.loginService.update(this.user).subscribe({
+      const userData = this.userForm.value;
+      console.log(userData);
+      const userCommand = new UserModel(
+        this.user.email,
+        this.user._id,
+        this.user.token,
+        userData.name,
+        userData.birthDate,
+        this.user.isMentor,
+        this.user.isMentee,
+        this.user.password,
+        { tags: userData.experiences, cargo: userData.cargo }
+      );
+      this.loginService.update(userCommand).subscribe({
         error: (err) => {
           console.error(err);
           this.snackBar.open("Erro na edição de Usuario!", "Dismiss", {
             duration: 2000,
           });
         },
-        next: (data) => {
-          this.user = data;
-          this.userService.setUser(data, this.isMentor(), !this.isMentor);
+        next: (response) => {
+          this.userService.setUser(
+            new UserModel(
+              response.email,
+              response._id,
+              response.token,
+              response.name,
+              response.birthDate,
+              response.isMentor,
+              response.isMentee,
+              response.password,
+              response.mentor,
+              response.mentor?.tags,
+              response.mentor?.cargo
+            ),
+            this.isMentor(),
+            !this.isMentor
+          );
+          this.user = this.userService.getUser();
           this.isEditing = false;
         },
       });
