@@ -27,7 +27,6 @@ export class MentoriasComponent {
         MentoriaModel.convertPayload(mentorias)
       );
     });
-
     if (user.getUser()?.isMentor) {
       this.displayedColumns.push("aceitar");
     }

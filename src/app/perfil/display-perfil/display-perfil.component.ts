@@ -8,6 +8,9 @@ import { FormBuilder, FormGroup } from "@angular/forms";
 import { COMMA, ENTER } from "@angular/cdk/keycodes";
 import { MatChipInputEvent } from "@angular/material/chips";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { MentoriasService } from "../../services/mentorias.service";
+import { MatTableDataSource } from "@angular/material/table";
+import { MentoriaModel } from "../../models/mentorias-model";
 
 @Component({
   selector: "app-display-perfil",
@@ -21,6 +24,7 @@ export class DisplayPerfilComponent implements AfterViewInit {
   userForm: FormGroup = this.formBuilder.group({});
   separatorKeysCodes: number[] = [ENTER, COMMA];
   private previousUser: UserModel | undefined;
+  dataSource: MatTableDataSource<any> = new MatTableDataSource();
 
   constructor(
     private userService: UserService,
@@ -28,7 +32,8 @@ export class DisplayPerfilComponent implements AfterViewInit {
     private formFactory: UserFormGroupFactory,
     private loginService: LoginService,
     private router: Router,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private mentoriaService: MentoriasService
   ) {
     this.isEditing = false;
   }
@@ -115,6 +120,14 @@ export class DisplayPerfilComponent implements AfterViewInit {
           });
         },
         next: () => {
+          this.mentoriaService.getMentorias(this.userService).subscribe((mentorias) => {
+            this.dataSource = new MatTableDataSource(
+              MentoriaModel.convertPayload(mentorias)
+            );
+            this.dataSource.filteredData.forEach(element => {
+              this.mentoriaService.updateMentoriaName(element._id, this.user!.isMentee).subscribe(() => {});
+            });
+          })
           this.userService.clearUser();
           this.router.navigate(["/"]);
         },

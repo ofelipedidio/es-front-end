@@ -15,11 +15,26 @@ export class MentoriasService {
   getMentorias(user: UserService): Observable<MentoriaInterface[]> {
     return this.http.get<MentoriaInterface[]>(baseurl + '?email=' + user.getUser()?.email);
   }
+  getMentoriasByName(name: String) {
+    return this.http.get<MentoriaInterface[]>(baseurl + '?name=' + name);
+  }
   createMentoria(mentoria: MentoriaModel): Observable<any> {
     return this.http.post(baseurl, mentoria);
   }
   updateMentoriaStatus(id: String, status: String) {
     const jsonStatus = {"status": status}; 
     return this.http.put(baseurl + '/' + id, jsonStatus);
+  }
+  updateMentoriaName(id: String, isMentee: boolean) {
+    var jsonName = {}; 
+
+    if (isMentee) { 
+      jsonName = {"mentorado": "<Usuário Deletado>"};  
+    } else {
+      jsonName = {"mentor": "<Usuário Deletado>"};  
+    };
+
+    
+    return this.http.put(baseurl + '/' + id, jsonName);
   }
 }
