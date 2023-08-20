@@ -28,6 +28,11 @@ const routes: Routes = [
     path: "perfil",
     component: DisplayPerfilComponent,
   },
+  {
+    path: 'relatorio',
+    loadChildren: () =>
+      import('./relatorio/relatorio.module').then((m) => m.RelatorioModule),
+  }
 ];
 
 @NgModule({
