@@ -33,6 +33,7 @@ export class MentorModel implements MentorInterface {
   static convertPayload(mentoresPayload: MentorInterface[]): MentorModel[] {
     const mentores: MentorModel[] = [];
     mentoresPayload.forEach((mentor) => {
+      console.log(mentor.mentor);
       mentores.push(
         new MentorModel(
           mentor.name,
