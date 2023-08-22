@@ -1,3 +1,7 @@
+import { Injectable } from "@angular/core";
+@Injectable({
+  providedIn: "root",
+})
 export class RoutingProxy {
   public routing(
     isMentor: boolean,
@@ -7,7 +11,7 @@ export class RoutingProxy {
     if (isMentee) {
       return ["/mentee/mentores"];
     } else if (isMentor) {
-      return ["/mentorias"];
+      return ["/mentor/mentoria"];
     } else if (isAdmin) {
       return ["/admin/relatorio"];
     }
