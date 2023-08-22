@@ -10,7 +10,7 @@ const routes: Routes = [
       import("./login/login.module").then((module) => module.LoginModule),
   },
   {
-    path: "mentores",
+    path: "mentor",
     loadChildren: () =>
       import("./mentores/mentores.module").then((m) => m.MentoresModule),
   },

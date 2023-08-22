@@ -6,7 +6,7 @@ export class RoutingProxy {
   public routing(
     isMentor: boolean,
     isMentee: boolean,
-    isAdmin: boolean
+    isAdmin: boolean = false
   ): String[] {
     if (isMentee) {
       return ["/mentee/mentores"];
