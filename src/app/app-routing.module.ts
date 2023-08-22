@@ -10,7 +10,7 @@ const routes: Routes = [
       import("./login/login.module").then((module) => module.LoginModule),
   },
   {
-    path: "mentores",
+    path: "mentor",
     loadChildren: () =>
       import("./mentores/mentores.module").then((m) => m.MentoresModule),
   },
@@ -29,10 +29,15 @@ const routes: Routes = [
     component: DisplayPerfilComponent,
   },
   {
-    path: 'relatorio',
+    path: "relatorio",
     loadChildren: () =>
-      import('./relatorio/relatorio.module').then((m) => m.RelatorioModule),
-  }
+      import("./relatorio/relatorio.module").then((m) => m.RelatorioModule),
+  },
+  {
+    path: "admin",
+    loadChildren: () =>
+      import("./admin/admin.module").then((m) => m.AdminModule),
+  },
 ];
 
 @NgModule({

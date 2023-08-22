@@ -1,3 +1,4 @@
+import { MatSidenavModule } from "@angular/material/sidenav";
 import { NgModule } from "@angular/core";
 import { AsyncPipe, CommonModule, NgFor } from "@angular/common";
 
@@ -17,6 +18,7 @@ import { MatSelectModule } from "@angular/material/select";
 
 import { MentoresHomeComponent } from "./mentores-home/mentores-home.component";
 import { ModalComponent } from "./mentores/modal/modal.component";
+import { MatListModule } from "@angular/material/list";
 
 @NgModule({
   declarations: [MentoresComponent, MentoresHomeComponent, ModalComponent],
@@ -39,6 +41,8 @@ import { ModalComponent } from "./mentores/modal/modal.component";
     MatSnackBarModule,
     FormsModule,
     MatSelectModule,
+    MatSidenavModule,
+    MatListModule,
   ],
 })
 export class MentoresModule {}

@@ -1,11 +1,21 @@
+import { MentoriasComponent } from "./../mentorias/mentorias/mentorias.component";
 import { MentoresHomeComponent } from "./mentores-home/mentores-home.component";
 import { MentoresComponent } from "./mentores/mentores.component";
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 
 const routes: Routes = [
-  { path: "", component: MentoresComponent },
-  { path: "home", component: MentoresHomeComponent },
+  { path: "list", component: MentoresComponent },
+  {
+    path: "",
+    component: MentoresHomeComponent,
+    children: [
+      {
+        path: "mentoria",
+        component: MentoriasComponent,
+      },
+    ],
+  },
 ];
 
 @NgModule({

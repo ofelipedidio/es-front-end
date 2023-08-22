@@ -1,3 +1,4 @@
+import { ProxyModule } from "./proxy/proxy.module";
 import { PerfilModule } from "./perfil/perfil.module";
 import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
@@ -12,7 +13,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatListModule } from "@angular/material/list";
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatDatepickerModule } from "@angular/material/datepicker";
 
 import { MatInputModule } from "@angular/material/input";
 import { MatFormFieldModule } from "@angular/material/form-field";
@@ -40,6 +41,7 @@ import { MatIconModule } from "@angular/material/icon";
     FormsModule,
     MatIconModule,
     PerfilModule,
+    ProxyModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,3 +1,4 @@
+import { RoutingProxy } from "./../../proxy/routing-proxy";
 import { UserFormGroupFactory } from "./../../factory/UserFormGroupFactory";
 import { Login } from "./../../models/login-model";
 import { LoginService } from "./../../services/login.service";
@@ -27,7 +28,8 @@ export class RegisterViewComponent {
     private userService: UserService,
     private loginService: LoginService,
     private router: Router,
-    private formFactory: UserFormGroupFactory
+    private formFactory: UserFormGroupFactory,
+    private routingProxy: RoutingProxy
   ) {
     this.registerForm = this.formBuilder.group(
       this.formFactory.make("", "", "", new Date(), "Mentorado", [""], "")
@@ -69,7 +71,7 @@ export class RegisterViewComponent {
       //Add error handling aqui
       next: (response) => {
         this.userService.setUser(user, isMentor, !isMentor);
-        this.routing(isMentor);
+        this.router.navigate(this.routingProxy.routing(isMentor, !isMentor));
       },
     });
   }
@@ -100,13 +102,4 @@ export class RegisterViewComponent {
       this.experiences.splice(index, 1);
     }
   }
-
-  //Remover duplicação
-  routing = (isMentor: boolean) => {
-    if (!isMentor) {
-      this.router.navigate(["/mentee/mentores"]);
-    } else if (isMentor) {
-      this.router.navigate(["/mentorias"]);
-    }
-  };
 }

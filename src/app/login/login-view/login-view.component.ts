@@ -1,3 +1,4 @@
+import { RoutingProxy } from "./../../proxy/routing-proxy";
 import { UserModel } from "./../../models/user-model";
 import { UserService } from "./../../services/user.service";
 import { MatSnackBar } from "@angular/material/snack-bar";
@@ -28,7 +29,8 @@ export class LoginViewComponent {
     private service: LoginService,
     private router: Router,
     private snackBar: MatSnackBar,
-    private userService: UserService
+    private userService: UserService,
+    private routingProxy: RoutingProxy
   ) {}
 
   getErrorMessage() {
@@ -43,16 +45,6 @@ export class LoginViewComponent {
     if (!this.email.hasError) {
       return "Voce deve inserir um email valido!";
     }
-
-    const routing = () => {
-      if (this.isMentee()) {
-        this.router.navigate(["/mentee/mentores"]);
-      } else if (this.isMentor()) {
-        this.router.navigate(["/mentorias"]);
-      } else if (this.isAdmin()) {
-        this.router.navigate(["/relatorio"]);
-      }
-    };
 
     return this.service
       .login(
@@ -104,7 +96,13 @@ export class LoginViewComponent {
             this.isMentee(),
             this.isAdmin()
           );
-          routing();
+          this.router.navigate(
+            this.routingProxy.routing(
+              this.isMentor(),
+              this.isMentee(),
+              this.isAdmin()
+            )
+          );
         },
       });
   }
