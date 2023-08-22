@@ -1,9 +1,16 @@
+import { LoginViewComponent } from "./login/login-view/login-view.component";
+import { userGuard } from "./guard/user.guard";
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { DisplayPerfilComponent } from "./perfil/display-perfil/display-perfil.component";
 
 const routes: Routes = [
-  { path: "", pathMatch: "full", redirectTo: "login" },
+  {
+    path: "",
+    pathMatch: "full",
+    component: LoginViewComponent,
+    canActivate: [userGuard],
+  },
   {
     path: "login",
     loadChildren: () =>
