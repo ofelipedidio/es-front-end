@@ -50,7 +50,7 @@ export class LoginViewComponent {
       } else if (this.isMentor()) {
         this.router.navigate(["/mentorias"]);
       } else if (this.isAdmin()) {
-        this.router.navigate(["/relatorio"]);
+        this.router.navigate(["/admin/relatorio"]);
       }
     };
 

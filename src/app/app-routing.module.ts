@@ -29,10 +29,15 @@ const routes: Routes = [
     component: DisplayPerfilComponent,
   },
   {
-    path: 'relatorio',
+    path: "relatorio",
     loadChildren: () =>
-      import('./relatorio/relatorio.module').then((m) => m.RelatorioModule),
-  }
+      import("./relatorio/relatorio.module").then((m) => m.RelatorioModule),
+  },
+  {
+    path: "admin",
+    loadChildren: () =>
+      import("./admin/admin.module").then((m) => m.AdminModule),
+  },
 ];
 
 @NgModule({
