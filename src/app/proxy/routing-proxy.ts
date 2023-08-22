@@ -17,4 +17,16 @@ export class RoutingProxy {
     }
     return [];
   }
+  public routeBasedOnRole(role: String): String[] {
+    switch (role) {
+      case "MENTOR":
+        return ["/mentee/mentores"];
+      case "ADMIN":
+        return ["/admin/relatorio"];
+      case "MENTORADO":
+        return ["mentee/mentores"];
+      default:
+        return [];
+    }
+  }
 }
