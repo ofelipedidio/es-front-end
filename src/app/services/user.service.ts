@@ -10,9 +10,14 @@ export class UserService {
   private currentUser: UserInterface | undefined;
   private currentRole: String | undefined;
 
-  setUser(user: UserInterface, isMentor: boolean, isMentee: boolean) {
+  setUser(
+    user: UserInterface,
+    isMentor: boolean,
+    isMentee: boolean,
+    isAdmin: boolean = false
+  ) {
     this.currentUser = user;
-    this.currentRole = isMentor ? "MENTOR" : "MENTORADO";
+    this.currentRole = isMentor ? "MENTOR" : isAdmin ? "ADMIN" : "MENTORADO";
     this.setItem(STORED_USER_DATA_KEY, user);
     this.setItem(STORED_USER_ROLE_KEY, this.currentRole);
   }

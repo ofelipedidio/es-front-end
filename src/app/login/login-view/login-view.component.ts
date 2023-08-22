@@ -22,6 +22,7 @@ export class LoginViewComponent {
   type: string = "";
   mentorValue = "mentor";
   menteeValue = "mentee";
+  adminValue = "admin";
 
   constructor(
     private service: LoginService,
@@ -48,6 +49,8 @@ export class LoginViewComponent {
         this.router.navigate(["/mentee/mentores"]);
       } else if (this.isMentor()) {
         this.router.navigate(["/mentorias"]);
+      } else if (this.isAdmin()) {
+        this.router.navigate(["/relatorio"]);
       }
     };
 
@@ -57,7 +60,8 @@ export class LoginViewComponent {
           this.email.value || "",
           this.password.value || "",
           this.isMentor(),
-          this.isMentee()
+          this.isMentee(),
+          this.isAdmin()
         )
       )
       .subscribe({
@@ -93,10 +97,12 @@ export class LoginViewComponent {
               response.password,
               response.mentor,
               response.mentor?.tags,
-              response.mentor?.cargo
+              response.mentor?.cargo,
+              response.isAdmin
             ),
             this.isMentor(),
-            this.isMentee()
+            this.isMentee(),
+            this.isAdmin()
           );
           routing();
         },
@@ -109,5 +115,8 @@ export class LoginViewComponent {
 
   private isMentor(): boolean {
     return this.type === this.mentorValue;
+  }
+  private isAdmin(): boolean {
+    return this.type === this.adminValue;
   }
 }

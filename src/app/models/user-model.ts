@@ -11,6 +11,7 @@ export class UserModel implements UserInterface {
   password: String;
   tags: String[] = [];
   cargo: String = "";
+  isAdmin: boolean;
 
   constructor(
     email: String,
@@ -23,7 +24,8 @@ export class UserModel implements UserInterface {
     password: String,
     mentor?: MentorProperty,
     tags?: String[],
-    cargo?: String
+    cargo?: String,
+    isAdmin: boolean = false
   ) {
     this.mentor = mentor ? mentor : { tags: [], cargo: "" };
     this.email = email;
@@ -36,6 +38,7 @@ export class UserModel implements UserInterface {
     this.password = password;
     this.tags = tags ? tags : [];
     this.cargo = cargo ? cargo : "";
+    this.isAdmin = isAdmin;
   }
   mentor: MentorProperty;
 
@@ -49,6 +52,7 @@ export interface UserInterface {
   birthDate: Date;
   isMentor: boolean;
   isMentee: boolean;
+  isAdmin: boolean;
   email: String;
   _id: String;
   token: String;
