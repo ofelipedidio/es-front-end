@@ -1,3 +1,4 @@
+import { LoginViewComponent } from "./login/login-view/login-view.component";
 import { userGuard } from "./guard/user.guard";
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
@@ -7,7 +8,7 @@ const routes: Routes = [
   {
     path: "",
     pathMatch: "full",
-    redirectTo: "login",
+    component: LoginViewComponent,
     canActivate: [userGuard],
   },
   {

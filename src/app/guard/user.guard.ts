@@ -13,13 +13,14 @@ export const userGuard: CanActivateFn = (
   state: RouterStateSnapshot
 ) => {
   const userService = inject(UserService);
-  const user = userService.getUser();
-  if (!user && !userService.getRole()) {
+  const router = inject(Router);
+  if (!userService.getUser() && !userService.getRole()) {
+    router.navigate(["login"]);
     return true;
   }
   const newRoute = inject(RoutingProxy).routeBasedOnRole(
     userService.getRole() || ""
   );
-  inject(Router).navigate(newRoute);
+  router.navigate(newRoute);
   return false;
 };
