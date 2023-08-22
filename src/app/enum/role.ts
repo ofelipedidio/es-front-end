@@ -7,5 +7,5 @@ const makeRole = (key: String, displayName: String, homeRoute: String) => ({
 export const RolesEnum = Object.freeze({
   MENTOR: makeRole("MENTOR", "Mentor", "/mentor/mentoria"),
   ADMIN: makeRole("ADMIN", "Admin", "/mentor/mentoria"),
-  MENTEE: makeRole("MENTEE", "Mentorado", "/mentee/mentores"),
+  MENTEE: makeRole("MENTORADO", "Mentorado", "/mentee/mentores"),
 });

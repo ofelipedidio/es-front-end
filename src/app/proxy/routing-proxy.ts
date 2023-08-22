@@ -10,11 +10,11 @@ export class RoutingProxy {
     isAdmin: boolean = false
   ): String[] {
     if (isMentee) {
-      return RolesEnum.MENTOR.homeRoute;
+      return RolesEnum.MENTEE.homeRoute;
     } else if (isMentor) {
-      return ["/mentor/mentoria"];
+      return RolesEnum.MENTEE.homeRoute;
     } else if (isAdmin) {
-      return ["/admin/relatorio"];
+      return RolesEnum.ADMIN.homeRoute;
     }
     return [];
   }
