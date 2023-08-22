@@ -4,6 +4,7 @@ export class MentorModel implements MentorInterface {
   cargo: String;
   isMentor = true;
   isMentee = false;
+  isAdmin = false;
   email: String;
   _id: String;
   token: String = "";

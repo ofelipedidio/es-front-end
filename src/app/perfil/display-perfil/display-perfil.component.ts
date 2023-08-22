@@ -99,7 +99,7 @@ export class DisplayPerfilComponent implements AfterViewInit {
               response.mentor?.cargo
             ),
             this.isMentor(),
-            !this.isMentor
+            !this.isMentor(),
           );
           this.user = this.userService.getUser();
           this.isEditing = false;
