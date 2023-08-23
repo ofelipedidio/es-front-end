@@ -59,8 +59,22 @@
         Aceitar?
       </mat-header-cell>
       <mat-cell *matCellDef="let mentor">
-        <button mat-button color="primary" (click)="setMentoriaStatus(mentor._id, 'Aceitada')">Sim</button>
-        <button mat-button color="warn" (click)="setMentoriaStatus(mentor._id, 'Recusada')">Não</button>
+        <button
+          mat-button
+          color="primary"
+          (click)="setMentoriaStatus(mentor._id, 'Aceitada')"
+          *ngIf="showAcceptButton(mentor.status)"
+        >
+          Sim
+        </button>
+        <button
+          mat-button
+          color="warn"
+          (click)="setMentoriaStatus(mentor._id, 'Recusada')"
+          *ngIf="showAcceptButton(mentor.status)"
+        >
+          Não
+        </button>
       </mat-cell>
     </ng-container>
 
@@ -69,10 +83,16 @@
         Mentoria realizada?
       </mat-header-cell>
       <mat-cell *matCellDef="let mentor">
-        <button *ngIf="showButton(mentor.status)" mat-button color="primary" (click)="setMentoriaStatus(mentor._id, 'Realizada')">Sim</button>
+        <button
+          *ngIf="showButton(mentor.status)"
+          mat-button
+          color="primary"
+          (click)="setMentoriaStatus(mentor._id, 'Realizada')"
+        >
+          Sim
+        </button>
       </mat-cell>
     </ng-container>
-
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 

@@ -33,12 +33,16 @@ export class MentoriasComponent {
     private snackBar: MatSnackBar,
     private router: Router
   ) {
+    this.loadMentorias(user);
+  }
+
+  private loadMentorias(user: UserService) {
     this.mentoriaService.getMentorias(user).subscribe((mentorias) => {
       let filteredMentorias = MentoriaModel.convertPayload(mentorias);
 
       if (user.getUser()?.isMentor) {
         filteredMentorias = filteredMentorias.filter(
-          (item) => item.status === "Em Análise"
+          (item) => item.status === "Em Análise" || item.status === "Aceitada"
         );
         this.displayedColumns.push("aceitar");
       } else if (user.getUser()?.isMentee) {
@@ -64,20 +68,14 @@ export class MentoriasComponent {
       })
     );
 
-    let route = "";
+    this.loadMentorias(this.user);
+  }
 
-    if (this.user.getRole() === "MENTOR") {
-      route = "mentor/historico";
-    } else {
-      route = "mentee/mentorias";
-    }
-
-    this.router
-      .navigate([""], { skipLocationChange: true })
-      .then(() => this.router.navigate([route]));
+  showAcceptButton(status: String) {
+    return status != "Aceitada";
   }
 
   showButton(status: String) {
-    return status === "Aceitada";
+    return status === "Aceitada" && this.user.getRole() !== "MENTOR";
   }
 }

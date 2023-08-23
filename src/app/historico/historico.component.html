@@ -1,75 +1,74 @@
 <div class="table-container">
-    <mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
-      <ng-container matColumnDef="mentor">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>
-          Mentor
-        </mat-header-cell>
-        <mat-cell *matCellDef="let mentor">
-          {{ mentor.mentor }}
-        </mat-cell>
-      </ng-container>
-  
-      <ng-container matColumnDef="mentorado">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>
-          Mentorado
-        </mat-header-cell>
-        <mat-cell *matCellDef="let mentor">
-          {{ mentor.mentorado }}
-        </mat-cell>
-      </ng-container>
-  
-      <ng-container matColumnDef="duracao">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>
-          Duração
-        </mat-header-cell>
-        <mat-cell *matCellDef="let mentor">
-          {{ mentor.duracao }}
-        </mat-cell>
-      </ng-container>
-  
-      <ng-container matColumnDef="formato">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>
-          Formato
-        </mat-header-cell>
-        <mat-cell *matCellDef="let mentor">
-          {{ mentor.formato }}
-        </mat-cell>
-      </ng-container>
-  
-      <ng-container matColumnDef="recompensa">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>
-          Recompensa
-        </mat-header-cell>
-        <mat-cell *matCellDef="let mentor">
-          {{ mentor.recompensa }}
-        </mat-cell>
-      </ng-container>
-  
-      <ng-container matColumnDef="status">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>
-          Status
-        </mat-header-cell>
-        <mat-cell *matCellDef="let mentor">
-          {{ mentor.status }}
-        </mat-cell>
-      </ng-container>
-      
-      <ng-container matColumnDef="avaliar">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>
-          Avaliar {{userType}}
-        </mat-header-cell>
-        <mat-cell *matCellDef="let mentor; let i = index">
-            <app-star-rating
-            [maxRating]="5"
-            [currentRating]="userRatings[i]"
-            (ratingClicked)="onRatingClicked(mentor._id, $event, i)"
-          ></app-star-rating>          
-        </mat-cell>
-      </ng-container>
-  
-  
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  
-      <mat-row *matRowDef="let mentor; columns: displayedColumns"></mat-row>
-    </mat-table>
-  </div>
+  <mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+    <ng-container matColumnDef="mentor">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Mentor
+      </mat-header-cell>
+      <mat-cell *matCellDef="let mentor">
+        {{ mentor.mentor }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="mentorado">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Mentorado
+      </mat-header-cell>
+      <mat-cell *matCellDef="let mentor">
+        {{ mentor.mentorado }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="duracao">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Duração
+      </mat-header-cell>
+      <mat-cell *matCellDef="let mentor">
+        {{ mentor.duracao }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="formato">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Formato
+      </mat-header-cell>
+      <mat-cell *matCellDef="let mentor">
+        {{ mentor.formato }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="recompensa">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Recompensa
+      </mat-header-cell>
+      <mat-cell *matCellDef="let mentor">
+        {{ mentor.recompensa }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Status
+      </mat-header-cell>
+      <mat-cell *matCellDef="let mentor">
+        {{ mentor.status }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="avaliar">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Avaliar {{ userType }}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let mentor; let i = index">
+        <app-star-rating
+          [maxRating]="5"
+          [currentRating]="userRatings[i]"
+          (ratingClicked)="onRatingClicked(mentor._id, $event, i)"
+        ></app-star-rating>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+    <mat-row *matRowDef="let mentor; columns: displayedColumns"></mat-row>
+  </mat-table>
+</div>
