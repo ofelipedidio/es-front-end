@@ -1,14 +1,19 @@
+
 import { MentoriasComponent } from "./../mentorias/mentorias/mentorias.component";
-import { MentoresHomeComponent } from "./mentores-home/mentores-home.component";
+//import { MentoresHomeComponent } from "./mentores-home/mentores-home.component";
+
+import { TagSolicitada } from "./mentores-home/mentores-home.component";
+
 import { MentoresComponent } from "./mentores/mentores.component";
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 
 const routes: Routes = [
+
   { path: "list", component: MentoresComponent },
   {
     path: "",
-    component: MentoresHomeComponent,
+    component: TagSolicitada,
     children: [
       {
         path: "mentoria",
@@ -16,6 +21,10 @@ const routes: Routes = [
       },
     ],
   },
+
+  //{ path: "", component: MentoresComponent },
+  { path: "home", component: TagSolicitada },
+
 ];
 
 @NgModule({
