@@ -20,5 +20,22 @@ export class TagsServiceService {
     );
   }
 
+  deleteTag(tagDeleted: TagModel): Observable<TagProperty> {
+    return this.http.post<TagProperty>(
+      baseurl + "deleting",
+      tagDeleted
+    )
+  }
+
+  acceptTag(tagaccepted: TagModel): Observable<TagProperty> {
+    return this.http.post<TagProperty>(
+      baseurl + "treat",
+      tagaccepted
+    )
+  }
+  
+  getUntreatedTags(): Observable<TagProperty[]> {
+    return this.http.get<TagProperty[]>(baseurl + 'findAllUn');
+  }
 
 }

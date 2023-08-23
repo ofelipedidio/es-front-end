@@ -50,3 +50,38 @@ Solicitar nova Tag
 
 </div>
 
+
+
+
+
+
+
+
+<div class="table-container">
+  <mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+    <ng-container matColumnDef="tag">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Tag
+      </mat-header-cell>
+      <mat-cell *matCellDef="let tag">
+        {{ tag.nameTag }}
+      </mat-cell> 
+    </ng-container>
+
+
+    <ng-container matColumnDef="aceitar">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Aceitar?
+      </mat-header-cell>
+      <mat-cell *matCellDef="let tag">
+        <button mat-button color="primary" (click)="accept(tag.nameTag)">Sim</button>
+        <button mat-button color="warn" (click)="deleteT(tag.nameTag)">Não</button>
+      </mat-cell>
+    </ng-container> 
+
+
+     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+    <mat-row *matRowDef="let mentor; columns: displayedColumns"></mat-row> 
+  </mat-table>
+</div>

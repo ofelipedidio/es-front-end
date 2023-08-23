@@ -14,6 +14,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TagsServiceService } from 'src/app/services/tags.service.service';
 import { TagModel } from 'src/app/models/tag';
+import { MatTableDataSource } from '@angular/material/table';
 
 /** @title Simple form field */
 @Component({
@@ -28,9 +29,14 @@ export class TagSolicitada {//implements OnInit{
     show: boolean = false;
     nameTag: String = "";
     treated: boolean = false;
-    
+
+    dataSource: MatTableDataSource<any> = new MatTableDataSource();
     
     constructor(
+
+      private tagService: TagsServiceService,
+
+
       private formBuilder: FormBuilder,
       private formFactory: TagFactory,
       private snackBar: MatSnackBar,
@@ -38,6 +44,17 @@ export class TagSolicitada {//implements OnInit{
       ) {
         this.registerForm = this.formBuilder.group(
           this.formFactory.make("empty", false));
+
+
+          tagService.getUntreatedTags().subscribe((tags) => {
+            console.log(TagModel.convertPayload(tags))
+            this.dataSource = new MatTableDataSource(
+              TagModel.convertPayload(tags)
+            );
+            
+         console.log(this.dataSource);
+         });
+
     }
   
    // ngOnInit(): void{
@@ -52,29 +69,21 @@ export class TagSolicitada {//implements OnInit{
    }
 
    onSubmit() {
-    if(true){//this.registerForm.get('nameTag')){
-      //const enteredString = this.registerForm.get("nameTag").value;
-      //this.nomeTag = enteredString;
-      //console.log(enteredString);    
+    if(this.nameTag != ""){//this.registerForm.get('nameTag')){
+
       console.log(this.nameTag);
-      //const enteredString = this.registerForm.get('nameTag')?.value;
-      //this.registerForm.setValue({nameTag: enteredString,
-      //treated: this.treated,
-      //show: this.show});
+
 
       
       this.service.sendTag(new TagModel(this.nameTag, false)).subscribe({
         error: (err) => {
-          if (err.status === 400) {
-            this.snackBar.open("Senha incorreta!", "Dismiss", {
-              duration: 2000,
-            });
-          } else if (err.status === 401) {
+          console.log(err.status);
+          if (err.status == 409) {
             this.snackBar.open(
-              "Usuario não possui a role selecionada",
+              "Tag já existente ou sob análise",
               "Dismiss",
               {
-                duration: 200,
+                duration: 2000,
               }
             );
           } else {
@@ -87,7 +96,9 @@ export class TagSolicitada {//implements OnInit{
           this.nameTag = "";
         },
       });
+      this.nameTag = "";
       this.toggle();
+
     } 
     else{
       console.log(this.registerForm.value);
@@ -100,5 +111,40 @@ export class TagSolicitada {//implements OnInit{
      this.nameTag = "";
      this.toggle();
    }
+
+
+
+
+
+
+
+
+
+
+   inConstructor(tagService: TagsServiceService){
+    tagService.getUntreatedTags().subscribe((tags) => {
+      this.dataSource = new MatTableDataSource(
+        TagModel.convertPayload(tags)
+      );
+   });
+  }
+
+
+
+
+
+ 
+
+   displayedColumns: string[] = ["tag", "aceitar"];
+
+
+   accept(nameTag: String){
+    this.service.acceptTag(new TagModel(nameTag, false)).subscribe();
+   }
+
+   deleteT(nameTag: String){
+    this.service.deleteTag(new TagModel(nameTag, false)).subscribe();
+   }
+
 
 }

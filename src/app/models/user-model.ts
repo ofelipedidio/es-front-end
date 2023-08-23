@@ -69,6 +69,6 @@ export interface MentorProperty {
 }
 
 export interface TagProperty {
-  tagName: String;
+  nameTag: String;
   treated: boolean;
 }
