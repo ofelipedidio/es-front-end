@@ -37,4 +37,14 @@ export class MentoriasService {
     
     return this.http.put(baseurl + '/' + id, jsonName);
   }
+
+  updateRatingMentor(id: String, rating: number) {
+    const jsonRating = {"rating_mentor" : rating}
+    return this.http.put(baseurl + '/' + id, jsonRating);
+  }
+
+  updateRatingMentorado(id: String, rating: number) {
+    const jsonRating = {"rating_mentorado" : rating}
+    return this.http.put(baseurl + '/' + id, jsonRating);
+  }
 }

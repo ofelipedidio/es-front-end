@@ -23,18 +23,17 @@ export class MentoriasComponent {
   constructor(private mentoriaService: MentoriasService, private formBuilder: FormBuilder, public user: UserService,
     private snackBar: MatSnackBar, private router: Router) {
     this.mentoriaService.getMentorias(user).subscribe((mentorias) => {
-      this.dataSource = new MatTableDataSource(
-        MentoriaModel.convertPayload(mentorias)
-      );
+      let filteredMentorias = MentoriaModel.convertPayload(mentorias);
+
       if (user.getUser()?.isMentor) {
+        filteredMentorias = filteredMentorias.filter(item => item.status === 'Em Análise');
         this.displayedColumns.push("aceitar");
-        
-        this.dataSource.filteredData.forEach(function(item, index, object) {
-          if (item.status !== 'Em Análise') {
-            object.splice(index, 1);
-          }
-        })
+      } else if (user.getUser()?.isMentee) {
+        filteredMentorias = filteredMentorias.filter(item => item.status !== 'Realizada');
+        this.displayedColumns.push("realizada");
       }
+
+      this.dataSource = new MatTableDataSource(filteredMentorias);
     }
     );
   }
@@ -54,6 +53,10 @@ export class MentoriasComponent {
   );
   this.router
       .navigate([""], { skipLocationChange: true })
-      .then(() => this.router.navigate(["/mentorias"]));
+      .then(() => this.router.navigate(["/mentoria"]));
+  }
+
+  showButton(status: String) {
+    return status === "Aceitada";
   }
 }

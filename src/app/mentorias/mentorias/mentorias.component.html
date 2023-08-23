@@ -64,6 +64,15 @@
       </mat-cell>
     </ng-container>
 
+    <ng-container matColumnDef="realizada">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Mentoria realizada?
+      </mat-header-cell>
+      <mat-cell *matCellDef="let mentor">
+        <button *ngIf="showButton(mentor.status)" mat-button color="primary" (click)="setMentoriaStatus(mentor._id, 'Realizada')">Sim</button>
+      </mat-cell>
+    </ng-container>
+
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 

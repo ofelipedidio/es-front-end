@@ -25,7 +25,9 @@ export class ModalComponent {
     "",
     "",
     "",
-    ""
+    "",
+    0,
+    0
   );
   mentorName: String = "";
   mentorEmail: String = "";
@@ -59,7 +61,9 @@ export class ModalComponent {
       this.mentoria.value.recompensa,
       this.mentorEmail,
       user.getUser()!.email,
-      "Em Análise"
+      "Em Análise",
+      0,
+      0
     );
     this.mentoriaService.createMentoria(this.newMentoria).subscribe(() =>
       this.snackBar.open("Mentoria solicitada!", "Dismiss", {

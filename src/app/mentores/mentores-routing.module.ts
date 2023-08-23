@@ -1,3 +1,4 @@
+import { HistoricoComponent } from "../historico/historico.component";
 import { MentoriasComponent } from "./../mentorias/mentorias/mentorias.component";
 import { MentoresHomeComponent } from "./mentores-home/mentores-home.component";
 import { MentoresComponent } from "./mentores/mentores.component";
@@ -13,6 +14,10 @@ const routes: Routes = [
       {
         path: "mentoria",
         component: MentoriasComponent,
+      },
+      {
+        path: "historico",
+        component: HistoricoComponent,
       },
     ],
   },

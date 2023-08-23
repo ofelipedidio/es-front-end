@@ -5,6 +5,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { HomeComponent } from "./home/home.component";
 import { DisplayPerfilComponent } from "../perfil/display-perfil/display-perfil.component";
 import { MentoriasComponent } from "../mentorias/mentorias/mentorias.component";
+import { HistoricoComponent } from "../historico/historico.component";
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
       {
         path: "mentorias",
         component: MentoriasComponent,
+      },
+      {
+        path: "historico",
+        component: HistoricoComponent,
       },
     ],
   },
