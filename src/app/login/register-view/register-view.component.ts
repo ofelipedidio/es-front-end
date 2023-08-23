@@ -70,9 +70,16 @@ export class RegisterViewComponent {
     this.loginService.register(user).subscribe({
       //Add error handling aqui
       next: (response) => {
+          console.log(response);
         this.userService.setUser(user, isMentor, !isMentor);
         this.router.navigate(this.routingProxy.routing(isMentor, !isMentor));
       },
+      error: (err) => {
+          if (err.status == 409) {
+              alert("Uma conta com esse mail já foi cadastrada!");
+          }
+          return;
+      }
     });
   }
 
