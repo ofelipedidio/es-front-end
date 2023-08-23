@@ -77,9 +77,18 @@ export class RegisterViewComponent {
   }
 
   onAccountTypeChange() {
-    if (this.registerForm.value.accountType !== "Mentor") {
-      this.registerForm.get("experiences")?.setValue("");
+    const accountType = this.registerForm.value.accountType;
+  
+    if (accountType === "Mentor") {
+      this.registerForm.get("experiences")?.setValidators([Validators.required]);
+      this.registerForm.get("cargo")?.setValidators([Validators.required]);
+    } else {
+      this.registerForm.get("experiences")?.clearValidators();
+      this.registerForm.get("cargo")?.clearValidators();
     }
+  
+    this.registerForm.get("experiences")?.updateValueAndValidity();
+    this.registerForm.get("cargo")?.updateValueAndValidity();
   }
 
   addExperience(event: MatChipInputEvent): void {
