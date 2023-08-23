@@ -1,5 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from "@angular/forms";
+import { Component, Input, OnInit } from "@angular/core";
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  FormControl,
+} from "@angular/forms";
 import { TagFactory } from "./../../factory/TagFactory";
 import { Router } from "@angular/router";
 //
@@ -8,84 +13,68 @@ import { Router } from "@angular/router";
 //  templateUrl: './mentores-home.component.html',
 //  styleUrls: ['./mentores-home.component.scss']
 //})
-import {MatSelectModule} from '@angular/material/select';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { TagsServiceService } from 'src/app/services/tags.service.service';
-import { TagModel } from 'src/app/models/tag';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatSelectModule } from "@angular/material/select";
+import { MatInputModule } from "@angular/material/input";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { TagsServiceService } from "src/app/services/tags.service.service";
+import { TagModel } from "src/app/models/tag";
+import { MatTableDataSource } from "@angular/material/table";
 
-/** @title Simple form field */
 @Component({
-  selector: 'app-mentores-home',
-  templateUrl: './mentores-home.component.html',
-  styleUrls: ['./mentores-home.component.scss'],
+  selector: "app-mentores-home",
+  templateUrl: "./mentores-home.component.html",
+  styleUrls: ["./mentores-home.component.scss"],
 })
-//export class FormFieldOverviewExample {}
-export class TagSolicitada {//implements OnInit{
+export class MentoresHomeComponent {
   myFormControl = new FormControl();
   registerForm: FormGroup;
-    show: boolean = false;
-    nameTag: String = "";
-    treated: boolean = false;
+  show: boolean = false;
+  nameTag: String = "";
+  treated: boolean = false;
 
-    dataSource: MatTableDataSource<any> = new MatTableDataSource();
-    
-    constructor(
+  dataSource: MatTableDataSource<any> = new MatTableDataSource();
 
-      private tagService: TagsServiceService,
+  constructor(
+    private tagService: TagsServiceService,
 
+    private formBuilder: FormBuilder,
+    private formFactory: TagFactory,
+    private snackBar: MatSnackBar,
+    private service: TagsServiceService
+  ) {
+    this.registerForm = this.formBuilder.group(
+      this.formFactory.make("empty", false)
+    );
 
-      private formBuilder: FormBuilder,
-      private formFactory: TagFactory,
-      private snackBar: MatSnackBar,
-      private service: TagsServiceService
-      ) {
-        this.registerForm = this.formBuilder.group(
-          this.formFactory.make("empty", false));
+    tagService.getUntreatedTags().subscribe((tags) => {
+      console.log(TagModel.convertPayload(tags));
+      this.dataSource = new MatTableDataSource(TagModel.convertPayload(tags));
 
+      console.log(this.dataSource);
+    });
+  }
 
-          tagService.getUntreatedTags().subscribe((tags) => {
-            console.log(TagModel.convertPayload(tags))
-            this.dataSource = new MatTableDataSource(
-              TagModel.convertPayload(tags)
-            );
-            
-         console.log(this.dataSource);
-         });
+  // ngOnInit(): void{
+  //   this.registerForm = this.formBuilder.group({nameTag: [null, Validators.required]});
+  // }
 
-    }
-  
-   // ngOnInit(): void{
-   //   this.registerForm = this.formBuilder.group({nameTag: [null, Validators.required]});
-   // }
+  toggle() {
+    this.show = !this.show;
+  }
 
-  
-
-
-   toggle() {
-     this.show = !this.show;
-   }
-
-   onSubmit() {
-    if(this.nameTag != ""){//this.registerForm.get('nameTag')){
+  onSubmit() {
+    if (this.nameTag != "") {
 
       console.log(this.nameTag);
 
-
-      
       this.service.sendTag(new TagModel(this.nameTag, false)).subscribe({
         error: (err) => {
           console.log(err.status);
           if (err.status == 409) {
-            this.snackBar.open(
-              "Tag já existente ou sob análise",
-              "Dismiss",
-              {
-                duration: 2000,
-              }
-            );
+            this.snackBar.open("Tag já existente ou sob análise", "Dismiss", {
+              duration: 2000,
+            });
           } else {
             this.snackBar.open("Credenciais invalidas!", "Dismiss", {
               duration: 2000,
@@ -98,53 +87,31 @@ export class TagSolicitada {//implements OnInit{
       });
       this.nameTag = "";
       this.toggle();
-
-    } 
-    else{
+    } else {
       console.log(this.registerForm.value);
       alert("Por favor preencha todos os campos necessários");
     }
-   }
-
-   deleteAndToggle() {
-     this.treated = false;
-     this.nameTag = "";
-     this.toggle();
-   }
-
-
-
-
-
-
-
-
-
-
-   inConstructor(tagService: TagsServiceService){
-    tagService.getUntreatedTags().subscribe((tags) => {
-      this.dataSource = new MatTableDataSource(
-        TagModel.convertPayload(tags)
-      );
-   });
   }
 
+  deleteAndToggle() {
+    this.treated = false;
+    this.nameTag = "";
+    this.toggle();
+  }
 
+  inConstructor(tagService: TagsServiceService) {
+    tagService.getUntreatedTags().subscribe((tags) => {
+      this.dataSource = new MatTableDataSource(TagModel.convertPayload(tags));
+    });
+  }
 
+  displayedColumns: string[] = ["tag", "aceitar"];
 
-
- 
-
-   displayedColumns: string[] = ["tag", "aceitar"];
-
-
-   accept(nameTag: String){
+  accept(nameTag: String) {
     this.service.acceptTag(new TagModel(nameTag, false)).subscribe();
-   }
+  }
 
-   deleteT(nameTag: String){
+  deleteT(nameTag: String) {
     this.service.deleteTag(new TagModel(nameTag, false)).subscribe();
-   }
-
-
+  }
 }

@@ -20,9 +20,11 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { FormsModule } from "@angular/forms";
 import { MatMenuModule } from "@angular/material/menu";
 import { MatIconModule } from "@angular/material/icon";
+import { HistoricoComponent } from './historico/historico.component';
+import { StarRatingComponent } from './historico/star-rating/star-rating.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, HistoricoComponent, StarRatingComponent],
   imports: [
     MatMenuModule,
     BrowserModule,

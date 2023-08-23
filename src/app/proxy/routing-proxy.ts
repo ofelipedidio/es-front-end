@@ -20,7 +20,7 @@ export class RoutingProxy {
   public routeBasedOnRole(role: String): String[] {
     switch (role) {
       case "MENTOR":
-        return ["/mentee/mentores"];
+        return ["/mentor/mentoria"];
       case "ADMIN":
         return ["/admin/relatorio"];
       case "MENTORADO":

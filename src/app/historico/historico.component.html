@@ -54,43 +54,16 @@
       </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="aceitar">
+    <ng-container matColumnDef="avaliar">
       <mat-header-cell *matHeaderCellDef mat-sort-header>
-        Aceitar?
+        Avaliar {{ userType }}
       </mat-header-cell>
-      <mat-cell *matCellDef="let mentor">
-        <button
-          mat-button
-          color="primary"
-          (click)="setMentoriaStatus(mentor._id, 'Aceitada')"
-          *ngIf="showAcceptButton(mentor.status)"
-        >
-          Sim
-        </button>
-        <button
-          mat-button
-          color="warn"
-          (click)="setMentoriaStatus(mentor._id, 'Recusada')"
-          *ngIf="showAcceptButton(mentor.status)"
-        >
-          Não
-        </button>
-      </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="realizada">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>
-        Mentoria realizada?
-      </mat-header-cell>
-      <mat-cell *matCellDef="let mentor">
-        <button
-          *ngIf="showButton(mentor.status)"
-          mat-button
-          color="primary"
-          (click)="setMentoriaStatus(mentor._id, 'Realizada')"
-        >
-          Sim
-        </button>
+      <mat-cell *matCellDef="let mentor; let i = index">
+        <app-star-rating
+          [maxRating]="5"
+          [currentRating]="userRatings[i]"
+          (ratingClicked)="onRatingClicked(mentor._id, $event, i)"
+        ></app-star-rating>
       </mat-cell>
     </ng-container>
 

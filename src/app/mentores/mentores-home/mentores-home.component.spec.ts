@@ -1,21 +1,21 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { TagSolicitada } from './mentores-home.component';
+import { MentoresHomeComponent } from "./mentores-home.component";
 
-describe('TagSolicitada', () => {
-  let component: TagSolicitada;
-  let fixture: ComponentFixture<TagSolicitada>;
+describe("TagSolicitada", () => {
+  let component: MentoresHomeComponent;
+  let fixture: ComponentFixture<MentoresHomeComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TagSolicitada]
+      declarations: [MentoresHomeComponent],
     });
-    fixture = TestBed.createComponent(TagSolicitada);
+    fixture = TestBed.createComponent(MentoresHomeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

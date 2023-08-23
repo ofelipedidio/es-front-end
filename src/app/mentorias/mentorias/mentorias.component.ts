@@ -4,7 +4,7 @@ import { Component, Input } from "@angular/core";
 import { MatTableDataSource } from "@angular/material/table";
 import { MentoriasService } from "../../services/mentorias.service";
 
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from "@angular/forms";
 import { UserService } from "src/app/services/user.service";
 
 import { MatSnackBar } from "@angular/material/snack-bar";
@@ -15,28 +15,45 @@ import { Router } from "@angular/router";
   templateUrl: "./mentorias.component.html",
   styleUrls: ["./mentorias.component.scss"],
 })
-
 export class MentoriasComponent {
   dataSource: MatTableDataSource<any> = new MatTableDataSource();
-  displayedColumns: string[] = ["mentor", "mentorado", "duracao", "formato", "recompensa", "status"];
+  displayedColumns: string[] = [
+    "mentor",
+    "mentorado",
+    "duracao",
+    "formato",
+    "recompensa",
+    "status",
+  ];
 
-  constructor(private mentoriaService: MentoriasService, private formBuilder: FormBuilder, public user: UserService,
-    private snackBar: MatSnackBar, private router: Router) {
+  constructor(
+    private mentoriaService: MentoriasService,
+    private formBuilder: FormBuilder,
+    public user: UserService,
+    private snackBar: MatSnackBar,
+    private router: Router
+  ) {
+    this.loadMentorias(user);
+  }
+
+  private loadMentorias(user: UserService) {
     this.mentoriaService.getMentorias(user).subscribe((mentorias) => {
-      this.dataSource = new MatTableDataSource(
-        MentoriaModel.convertPayload(mentorias)
-      );
+      let filteredMentorias = MentoriaModel.convertPayload(mentorias);
+
       if (user.getUser()?.isMentor) {
+        filteredMentorias = filteredMentorias.filter(
+          (item) => item.status === "Em Análise" || item.status === "Aceitada"
+        );
         this.displayedColumns.push("aceitar");
-        
-        this.dataSource.filteredData.forEach(function(item, index, object) {
-          if (item.status !== 'Em Análise') {
-            object.splice(index, 1);
-          }
-        })
+      } else if (user.getUser()?.isMentee) {
+        filteredMentorias = filteredMentorias.filter(
+          (item) => item.status !== "Realizada"
+        );
+        this.displayedColumns.push("realizada");
       }
-    }
-    );
+
+      this.dataSource = new MatTableDataSource(filteredMentorias);
+    });
   }
 
   applyFilter(event: Event) {
@@ -45,15 +62,20 @@ export class MentoriasComponent {
   }
 
   setMentoriaStatus(id: String, newStatus: String) {
-    console.log(id);
-    console.log(newStatus);
     this.mentoriaService.updateMentoriaStatus(id, newStatus).subscribe(() =>
-    this.snackBar.open("Mentoria " + newStatus, "Dismiss", {
-      duration: 2000,
-    })
-  );
-  this.router
-      .navigate([""], { skipLocationChange: true })
-      .then(() => this.router.navigate(["/mentorias"]));
+      this.snackBar.open("Mentoria " + newStatus, "Dismiss", {
+        duration: 2000,
+      })
+    );
+
+    this.loadMentorias(this.user);
+  }
+
+  showAcceptButton(status: String) {
+    return status != "Aceitada";
+  }
+
+  showButton(status: String) {
+    return status === "Aceitada" && this.user.getRole() !== "MENTOR";
   }
 }
