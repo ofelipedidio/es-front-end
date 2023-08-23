@@ -16,12 +16,12 @@ import { FormsModule, NgModel, ReactiveFormsModule } from "@angular/forms";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatSelectModule } from "@angular/material/select";
 
-import { MentoresHomeComponent } from "./mentores-home/mentores-home.component";
+import { TagSolicitada } from "./mentores-home/mentores-home.component";
 import { ModalComponent } from "./mentores/modal/modal.component";
 import { MatListModule } from "@angular/material/list";
 
 @NgModule({
-  declarations: [MentoresComponent, MentoresHomeComponent, ModalComponent],
+  declarations: [MentoresComponent, TagSolicitada, ModalComponent],
   imports: [
     CommonModule,
     MentoresRoutingModule,
