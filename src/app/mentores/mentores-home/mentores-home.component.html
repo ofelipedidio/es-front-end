@@ -12,3 +12,69 @@
     </mat-sidenav-content>
   </mat-sidenav-container>
 </p>
+
+<!-- 
+<div *ngIf="show == true">
+    <form #registerForm="ngForm" (ngSubmit)="onSubmit()">
+      <mat-form-field>
+        <mat-label>Tag Solicitada</mat-label>
+        <input matInput [(ngModel)]="nameTag" name="oioioi" required>
+      </mat-form-field>
+      <br>
+    </form>  
+    <button
+      mat-button
+      color="primary"
+      (click)="this.onSubmit();"
+      class="btn-primary">Enviar solicitação</button>
+  
+    <button
+      mat-button
+      color="primary"
+      (click)="this.deleteAndToggle();"
+      class="btn-secondary">Cancelar solicitação</button>
+
+  
+</div>
+
+  
+<div *ngIf="show == false">
+<button
+mat-button
+color="primary"
+(click)="this.toggle()"
+class="action"
+>
+Solicitar nova Tag
+</button>
+
+</div> -->
+<!-- 
+<div class="table-container">
+  <mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+    <ng-container matColumnDef="tag">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Tag </mat-header-cell>
+      <mat-cell *matCellDef="let tag">
+        {{ tag.nameTag }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="aceitar">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Aceitar?
+      </mat-header-cell>
+      <mat-cell *matCellDef="let tag">
+        <button mat-button color="primary" (click)="accept(tag.nameTag)">
+          Sim
+        </button>
+        <button mat-button color="warn" (click)="deleteT(tag.nameTag)">
+          Não
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+    <mat-row *matRowDef="let mentor; columns: displayedColumns"></mat-row>
+  </mat-table>
+</div> -->

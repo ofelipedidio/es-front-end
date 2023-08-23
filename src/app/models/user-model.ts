@@ -67,3 +67,8 @@ export interface MentorProperty {
   tags: String[];
   cargo: String;
 }
+
+export interface TagProperty {
+  nameTag: String;
+  treated: boolean;
+}

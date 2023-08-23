@@ -1,6 +1,9 @@
 import { HistoricoComponent } from "../historico/historico.component";
+
 import { MentoriasComponent } from "./../mentorias/mentorias/mentorias.component";
+
 import { MentoresHomeComponent } from "./mentores-home/mentores-home.component";
+
 import { MentoresComponent } from "./mentores/mentores.component";
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
@@ -21,6 +24,8 @@ const routes: Routes = [
       },
     ],
   },
+
+  { path: "home", component: MentoresHomeComponent },
 ];
 
 @NgModule({

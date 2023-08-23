@@ -70,16 +70,32 @@ export class RegisterViewComponent {
     this.loginService.register(user).subscribe({
       //Add error handling aqui
       next: (response) => {
+          console.log(response);
         this.userService.setUser(user, isMentor, !isMentor);
         this.router.navigate(this.routingProxy.routing(isMentor, !isMentor));
       },
+      error: (err) => {
+          if (err.status == 409) {
+              alert("Uma conta com esse mail já foi cadastrada!");
+          }
+          return;
+      }
     });
   }
 
   onAccountTypeChange() {
-    if (this.registerForm.value.accountType !== "Mentor") {
-      this.registerForm.get("experiences")?.setValue("");
+    const accountType = this.registerForm.value.accountType;
+  
+    if (accountType === "Mentor") {
+      this.registerForm.get("experiences")?.setValidators([Validators.required]);
+      this.registerForm.get("cargo")?.setValidators([Validators.required]);
+    } else {
+      this.registerForm.get("experiences")?.clearValidators();
+      this.registerForm.get("cargo")?.clearValidators();
     }
+  
+    this.registerForm.get("experiences")?.updateValueAndValidity();
+    this.registerForm.get("cargo")?.updateValueAndValidity();
   }
 
   addExperience(event: MatChipInputEvent): void {
