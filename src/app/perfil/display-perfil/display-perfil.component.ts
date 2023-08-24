@@ -1,9 +1,10 @@
+import { TagsServiceService } from "src/app/services/tags.service.service";
 import { Router } from "@angular/router";
 import { LoginService } from "./../../services/login.service";
 import { UserFormGroupFactory } from "./../../factory/UserFormGroupFactory";
-import { UserModel } from "src/app/models/user-model";
+import { TagProperty, UserModel } from "src/app/models/user-model";
 import { UserService } from "./../../services/user.service";
-import { AfterViewInit, Component } from "@angular/core";
+import { AfterViewInit, Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { COMMA, ENTER } from "@angular/cdk/keycodes";
 import { MatChipInputEvent } from "@angular/material/chips";
@@ -17,7 +18,7 @@ import { MentoriaModel } from "../../models/mentorias-model";
   templateUrl: "./display-perfil.component.html",
   styleUrls: ["./display-perfil.component.scss"],
 })
-export class DisplayPerfilComponent implements AfterViewInit {
+export class DisplayPerfilComponent implements AfterViewInit, OnInit {
   public user: UserModel | undefined;
   public role: String | undefined;
   public isEditing: boolean;
@@ -25,6 +26,8 @@ export class DisplayPerfilComponent implements AfterViewInit {
   separatorKeysCodes: number[] = [ENTER, COMMA];
   private previousUser: UserModel | undefined;
   dataSource: MatTableDataSource<any> = new MatTableDataSource();
+  items: TagProperty[] = [];
+  selectedItems: TagProperty[] = [];
 
   constructor(
     private userService: UserService,
@@ -33,7 +36,8 @@ export class DisplayPerfilComponent implements AfterViewInit {
     private loginService: LoginService,
     private router: Router,
     private snackBar: MatSnackBar,
-    private mentoriaService: MentoriasService
+    private mentoriaService: MentoriasService,
+    private tagService: TagsServiceService
   ) {
     this.isEditing = false;
   }
@@ -85,7 +89,7 @@ export class DisplayPerfilComponent implements AfterViewInit {
           });
         },
         next: (response) => {
-            console.log("DBG2:", response);
+          console.log("DBG2:", response);
           this.userService.setUser(
             new UserModel(
               response.email,
@@ -99,10 +103,10 @@ export class DisplayPerfilComponent implements AfterViewInit {
               response.phone,
               response.mentor,
               response.mentor?.tags,
-              response.mentor?.cargo,
+              response.mentor?.cargo
             ),
             this.isMentor(),
-            !this.isMentor(),
+            !this.isMentor()
           );
           this.user = this.userService.getUser();
           this.isEditing = false;
@@ -123,14 +127,18 @@ export class DisplayPerfilComponent implements AfterViewInit {
           });
         },
         next: () => {
-          this.mentoriaService.getMentorias(this.userService).subscribe((mentorias) => {
-            this.dataSource = new MatTableDataSource(
-              MentoriaModel.convertPayload(mentorias)
-            );
-            this.dataSource.filteredData.forEach(element => {
-              this.mentoriaService.updateMentoriaName(element._id, this.user!.isMentee).subscribe(() => {});
+          this.mentoriaService
+            .getMentorias(this.userService)
+            .subscribe((mentorias) => {
+              this.dataSource = new MatTableDataSource(
+                MentoriaModel.convertPayload(mentorias)
+              );
+              this.dataSource.filteredData.forEach((element) => {
+                this.mentoriaService
+                  .updateMentoriaName(element._id, this.user!.isMentee)
+                  .subscribe(() => {});
+              });
             });
-          })
           this.userService.clearUser();
           this.router.navigate(["/"]);
         },
@@ -149,29 +157,32 @@ export class DisplayPerfilComponent implements AfterViewInit {
     this.user = this.previousUser;
   }
 
-  addExperience(event: MatChipInputEvent): void {
-    const input = event.chipInput.inputElement;
-    const value = event.value;
-    const experiences: String[] = this.getExperiences();
-
-    if ((value || "").trim() && !experiences.includes(value.trim())) {
-      experiences.push(value.trim());
-    }
-
-    if (input) {
-      input.value = "";
-    }
+  ngOnInit(): void {
+    this.tagService.getAllTreatedTags().subscribe((data) => {
+      this.items = data.sort((a, b) => (a.nameTag >= b.nameTag ? 1 : -1));
+    });
   }
 
-  private getExperiences(): String[] {
-    return this.userForm.value.experiences as String[];
+  onSelectionChange(item: TagProperty | null): void {
+    if (item == null) {
+      return;
+    }
+    this.selectedItems.push(item);
   }
 
-  removeExperience(experience: string): void {
-    const index = this.getExperiences().indexOf(experience);
-
+  removeItem(item: TagProperty): void {
+    const index = this.selectedItems.indexOf(item);
     if (index >= 0) {
-      this.getExperiences().splice(index, 1);
+      this.selectedItems.splice(index, 1);
     }
+  }
+
+  getTag(name: String): TagProperty | null {
+    for (const tag of this.items) {
+      if (tag.nameTag == name) {
+        return tag;
+      }
+    }
+    return null;
   }
 }

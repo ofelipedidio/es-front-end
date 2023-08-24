@@ -1,3 +1,4 @@
+import { MatSelectModule } from "@angular/material/select";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatInputModule } from "@angular/material/input";
 import { MatChipsModule } from "@angular/material/chips";
@@ -11,6 +12,7 @@ import { CommonModule } from "@angular/common";
 import { PerfilRoutingModule } from "./perfil-routing.module";
 import { DisplayPerfilComponent } from "./display-perfil/display-perfil.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { MatOptionModule } from "@angular/material/core";
 
 @NgModule({
   declarations: [DisplayPerfilComponent],
@@ -25,6 +27,9 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     MatChipsModule,
     MatInputModule,
     MatSnackBarModule,
+    MatButtonModule,
+    MatOptionModule,
+    MatSelectModule,
   ],
 })
 export class PerfilModule {}

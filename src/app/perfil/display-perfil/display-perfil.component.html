@@ -62,26 +62,32 @@
       </p>
 
       <div *ngIf="isMentor()">
-        <p>
-          <mat-form-field>
-            <mat-label>Experiencias:</mat-label>
-            <mat-chip-grid #chipGrid>
-              <mat-chip
-                *ngFor="let experience of userForm.value.experiences"
-                (removed)="removeExperience(experience)"
+        <mat-form-field appearance="outline" class="dropdown-container">
+          <mat-label>Experiências</mat-label>
+          <mat-select
+            (selectionChange)="onSelectionChange(getTag($event.value))"
+          >
+            <div *ngFor="let item of items">
+              <mat-option
+                [value]="item.nameTag"
+                *ngIf="!selectedItems.includes(item)"
               >
-                {{ experience }}
-                <mat-icon matChipRemove>cancel</mat-icon>
-              </mat-chip>
-            </mat-chip-grid>
-            <input
-              matInput
-              [matChipInputFor]="chipGrid"
-              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-              (matChipInputTokenEnd)="addExperience($event)"
-            />
-          </mat-form-field>
-        </p>
+                {{ item.nameTag }}
+              </mat-option>
+            </div>
+          </mat-select>
+        </mat-form-field>
+
+        <div class="tags-container">
+          <mat-chip
+            *ngFor="let item of selectedItems"
+            [removable]="true"
+            (removed)="removeItem(item)"
+          >
+            {{ item.nameTag }}
+            <mat-icon matChipRemove>cancel</mat-icon>
+          </mat-chip>
+        </div>
         <p>
           <mat-form-field>
             <mat-label>Cargo</mat-label>
