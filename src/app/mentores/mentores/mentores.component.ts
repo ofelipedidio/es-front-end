@@ -18,18 +18,11 @@ export class MentoresComponent {
     public userService: UserService
   ) {
     this.mentorService.getMentores().subscribe((mentors) => {
-      
       this.dataSource = new MatTableDataSource(
         MentorModel.convertPayload(mentors)
       );
     });
   }
-
-  onButtonClick(mentor: any) {
-    console.log(this.userService.getUser());
-    console.log(`${mentor.email} selecionado`);
-  }
-
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();

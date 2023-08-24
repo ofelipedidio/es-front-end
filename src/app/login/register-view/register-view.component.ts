@@ -1,10 +1,7 @@
 import { RoutingProxy } from "./../../proxy/routing-proxy";
 import { UserFormGroupFactory } from "./../../factory/UserFormGroupFactory";
-import { Login } from "./../../models/login-model";
 import { LoginService } from "./../../services/login.service";
-import { MenteeService } from "./../../services/mentee.service";
 import { UserService } from "./../../services/user.service";
-import { MentoresService } from "./../../services/mentores.service";
 import { Component } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatChipInputEvent } from "@angular/material/chips";
@@ -52,7 +49,6 @@ export class RegisterViewComponent {
 
     const registerForm = this.registerForm.value;
     const isMentor = registerForm.accountType === "Mentor";
-    //Ajustar back para bater com isso aqui
     const user = new UserModel(
       registerForm.email,
       "",
@@ -68,32 +64,33 @@ export class RegisterViewComponent {
       user.cargo = registerForm.cargo;
     }
     this.loginService.register(user).subscribe({
-      //Add error handling aqui
       next: (response) => {
-          console.log(response);
+        console.log(response);
         this.userService.setUser(user, isMentor, !isMentor);
         this.router.navigate(this.routingProxy.routing(isMentor, !isMentor));
       },
       error: (err) => {
-          if (err.status == 409) {
-              alert("Uma conta com esse mail já foi cadastrada!");
-          }
-          return;
-      }
+        if (err.status == 409) {
+          alert("Uma conta com esse mail já foi cadastrada!");
+        }
+        return;
+      },
     });
   }
 
   onAccountTypeChange() {
     const accountType = this.registerForm.value.accountType;
-  
+
     if (accountType === "Mentor") {
-      this.registerForm.get("experiences")?.setValidators([Validators.required]);
+      this.registerForm
+        .get("experiences")
+        ?.setValidators([Validators.required]);
       this.registerForm.get("cargo")?.setValidators([Validators.required]);
     } else {
       this.registerForm.get("experiences")?.clearValidators();
       this.registerForm.get("cargo")?.clearValidators();
     }
-  
+
     this.registerForm.get("experiences")?.updateValueAndValidity();
     this.registerForm.get("cargo")?.updateValueAndValidity();
   }
