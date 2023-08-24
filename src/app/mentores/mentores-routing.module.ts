@@ -1,4 +1,5 @@
 import { HistoricoComponent } from "../historico/historico.component";
+import { RequesttagComponent } from "../tags/requesttag/requesttag.component";
 
 import { MentoriasComponent } from "./../mentorias/mentorias/mentorias.component";
 
@@ -21,6 +22,10 @@ const routes: Routes = [
       {
         path: "historico",
         component: HistoricoComponent,
+      },
+      {
+        path: "tag",
+        component: RequesttagComponent,
       },
     ],
   },
