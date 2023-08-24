@@ -55,7 +55,6 @@ export class DisplayPerfilComponent implements AfterViewInit {
           this.user.phone,
           this.user.birthDate,
           "",
-          this.user.mentor.tags,
           this.user.mentor.cargo
         )
       );
