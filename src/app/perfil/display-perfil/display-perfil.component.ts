@@ -52,6 +52,7 @@ export class DisplayPerfilComponent implements AfterViewInit {
           this.user.name,
           this.user.email,
           "",
+          this.user.phone,
           this.user.birthDate,
           "",
           this.user.mentor.tags,
@@ -64,7 +65,7 @@ export class DisplayPerfilComponent implements AfterViewInit {
   public onConfirm() {
     if (this.user) {
       const userData = this.userForm.value;
-      console.log(userData);
+      console.log("DBG1:", userData);
       const userCommand = new UserModel(
         this.user.email,
         this.user._id,
@@ -74,6 +75,7 @@ export class DisplayPerfilComponent implements AfterViewInit {
         this.user.isMentor,
         this.user.isMentee,
         this.user.password,
+        userData.phone,
         { tags: userData.experiences, cargo: userData.cargo }
       );
       this.loginService.update(userCommand).subscribe({
@@ -84,6 +86,7 @@ export class DisplayPerfilComponent implements AfterViewInit {
           });
         },
         next: (response) => {
+            console.log("DBG2:", response);
           this.userService.setUser(
             new UserModel(
               response.email,
@@ -94,9 +97,10 @@ export class DisplayPerfilComponent implements AfterViewInit {
               response.isMentor,
               response.isMentee,
               response.password,
+              response.phone,
               response.mentor,
               response.mentor?.tags,
-              response.mentor?.cargo
+              response.mentor?.cargo,
             ),
             this.isMentor(),
             !this.isMentor(),

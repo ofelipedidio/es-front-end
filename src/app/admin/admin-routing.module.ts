@@ -1,3 +1,4 @@
+import { AdmtagComponent } from "../tags/admtag/admtag.component";
 import { RelatorioComponent } from "./../relatorio/relatorio/relatorio.component";
 import { AdminComponent } from "./admin.component";
 import { NgModule } from "@angular/core";
@@ -11,6 +12,10 @@ const routes: Routes = [
       {
         path: "relatorio",
         component: RelatorioComponent,
+      },
+      {
+        path: "tag",
+        component: AdmtagComponent,
       },
     ],
   },

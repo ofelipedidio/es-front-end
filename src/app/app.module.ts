@@ -22,6 +22,7 @@ import { MatMenuModule } from "@angular/material/menu";
 import { MatIconModule } from "@angular/material/icon";
 import { HistoricoComponent } from './historico/historico.component';
 import { StarRatingComponent } from './historico/star-rating/star-rating.component';
+import { TagsModule } from "./tags/tags.module";
 
 @NgModule({
   declarations: [AppComponent, HistoricoComponent, StarRatingComponent],
@@ -44,6 +45,7 @@ import { StarRatingComponent } from './historico/star-rating/star-rating.compone
     MatIconModule,
     PerfilModule,
     ProxyModule,
+    TagsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
