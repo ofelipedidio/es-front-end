@@ -70,9 +70,11 @@ export class AdmtagComponent {
 
   accept(nameTag: String) {
     this.service.acceptTag(new TagModel(nameTag, false)).subscribe();
+    location.reload();
   }
 
   deleteT(nameTag: String) {
     this.service.deleteTag(new TagModel(nameTag, false)).subscribe();
+    location.reload();
   }
 }

@@ -52,7 +52,7 @@ export class RequesttagComponent {
 
       console.log(this.nameTag);
 
-      this.service.sendTag(new TagModel(this.nameTag, false)).subscribe({
+      this.service.sendTag(new TagModel(this.nameTag.toUpperCase(), false)).subscribe({
         error: (err) => {
           console.log(err.status);
           if (err.status == 409) {
