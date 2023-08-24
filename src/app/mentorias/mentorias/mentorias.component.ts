@@ -44,7 +44,9 @@ export class MentoriasComponent {
         filteredMentorias = filteredMentorias.filter(
           (item) => item.status === "Em Análise" || item.status === "Aceitada"
         );
-        this.displayedColumns.push("aceitar");
+        if (!this.displayedColumns.includes("aceitar")) {
+          this.displayedColumns.push("aceitar");
+        }
       } else if (user.getUser()?.isMentee) {
         filteredMentorias = filteredMentorias.filter(
           (item) => item.status !== "Realizada"
