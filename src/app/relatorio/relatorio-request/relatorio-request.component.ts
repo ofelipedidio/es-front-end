@@ -37,7 +37,7 @@ export class RelatorioRequestComponent {
       return;
     }
     
-    this.router.navigateByUrl('/relatorio/' + new Date(registerForm.start).getTime() + '/' + new Date(registerForm.end).getTime());
+    this.router.navigateByUrl('admin/relatorio/' + new Date(registerForm.start).getTime() + '/' + new Date(registerForm.end).getTime());
 
   }
 }

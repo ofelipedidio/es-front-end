@@ -1,3 +1,4 @@
+import { RelatorioRequestComponent } from "./../relatorio/relatorio-request/relatorio-request.component";
 import { AdmtagComponent } from "../tags/admtag/admtag.component";
 import { RelatorioComponent } from "./../relatorio/relatorio/relatorio.component";
 import { AdminComponent } from "./admin.component";
@@ -11,6 +12,10 @@ const routes: Routes = [
     children: [
       {
         path: "relatorio",
+        component: RelatorioRequestComponent,
+      },
+      {
+        path: "relatorio/:start:/:end:",
         component: RelatorioComponent,
       },
       {
