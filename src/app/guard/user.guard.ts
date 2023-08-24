@@ -8,10 +8,7 @@ import {
 } from "@angular/router";
 import { RoutingProxy } from "../proxy/routing-proxy";
 
-export const userGuard: CanActivateFn = (
-  route: ActivatedRouteSnapshot,
-  state: RouterStateSnapshot
-) => {
+export const userGuard: CanActivateFn = () => {
   const userService = inject(UserService);
   const router = inject(Router);
   if (!userService.getUser() && !userService.getRole()) {
