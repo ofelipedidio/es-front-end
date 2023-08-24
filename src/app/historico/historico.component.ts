@@ -48,11 +48,11 @@ export class HistoricoComponent {
       if (user.getUser()?.isMentor) {
         this.userType = "Mentorado";
         filteredMentorias.forEach((element) => {
-          this.userRatings.push(element.ratingMentorado);
+          this.userRatings.push(element.rating_mentorado);
         });
       } else if (user.getUser()?.isMentee) {
         filteredMentorias.forEach((element) => {
-          this.userRatings.push(element.ratingMentor);
+          this.userRatings.push(element.rating_mentor);
         });
       }
     });

@@ -5,11 +5,11 @@ export class MentoriaModel implements MentoriaInterface {
   duracao: String;
   formato: String;
   recompensa: String;
-  mentorEmail: String;
-  mentoradoEmail: String;
+  mentor_email: String;
+  mentorado_email: String;
   status: String;
-  ratingMentor: number;
-  ratingMentorado: number;
+  rating_mentor: number;
+  rating_mentorado: number;
   constructor(
     _id: String,
     mentor: String,
@@ -29,11 +29,11 @@ export class MentoriaModel implements MentoriaInterface {
     this.duracao = duracao;
     this.formato = formato;
     this.recompensa = recompensa;
-    this.mentorEmail = mentor_email;
-    this.mentoradoEmail = mentorado_email;
+    this.mentor_email = mentor_email;
+    this.mentorado_email = mentorado_email;
     this.status = status;
-    this.ratingMentor = rating_mentor;
-    this.ratingMentorado = rating_mentorado;
+    this.rating_mentor = rating_mentor;
+    this.rating_mentorado = rating_mentorado;
   }
   static convertPayload(
     mentoriasPayload: MentoriaInterface[]
@@ -48,11 +48,11 @@ export class MentoriaModel implements MentoriaInterface {
           mentoria.duracao,
           mentoria.formato,
           mentoria.recompensa,
-          mentoria.mentorEmail,
-          mentoria.mentoradoEmail,
+          mentoria.mentor_email,
+          mentoria.mentorado_email,
           mentoria.status,
-          mentoria.ratingMentor,
-          mentoria.ratingMentorado
+          mentoria.rating_mentor,
+          mentoria.rating_mentorado
         )
       );
     });
@@ -67,9 +67,9 @@ export interface MentoriaInterface {
   duracao: String;
   formato: String;
   recompensa: String;
-  mentorEmail: String;
-  mentoradoEmail: String;
+  mentor_email: String;
+  mentorado_email: String;
   status: String;
-  ratingMentor: number;
-  ratingMentorado: number;
+  rating_mentor: number;
+  rating_mentorado: number;
 }

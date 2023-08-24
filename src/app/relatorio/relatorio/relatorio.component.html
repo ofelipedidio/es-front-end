@@ -1,36 +1,33 @@
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <ng-container matColumnDef="qtd_usuario">
+    <th mat-header-cell *matHeaderCellDef>Quantidade de Usuários</th>
+    <td mat-cell *matCellDef="let mentor">{{ mentor.qtd_usuario }}</td>
+  </ng-container>
 
-    <ng-container matColumnDef="qtd_usuario">
-      <th mat-header-cell *matHeaderCellDef> Quantidade de Usuários </th>
-      <td mat-cell *matCellDef="let mentor"> {{mentor.qtd_usuario}} </td>
-    </ng-container>
-  
-    <!-- Name Column -->
-    <ng-container matColumnDef="qtd_mentorias">
-      <th mat-header-cell *matHeaderCellDef> Quantidade de Mentorias </th>
-      <td mat-cell *matCellDef="let mentor"> {{mentor.qtd_mentorias}} </td>
-    </ng-container>
-  
-    <!-- Weight Column -->
-    <ng-container matColumnDef="taxa_mentorias">
-      <th mat-header-cell *matHeaderCellDef> Taxa de Mentorias </th>
-      <td mat-cell *matCellDef="let mentor"> {{mentor.taxa_mentorias}} </td>
-    </ng-container>
-  
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="qtd_experiencias">
-      <th mat-header-cell *matHeaderCellDef> Quantidade de Tags </th>
-      <td mat-cell *matCellDef="let mentor"> {{mentor.qtd_experiencias}} </td>
-    </ng-container>
+  <!-- Name Column -->
+  <ng-container matColumnDef="qtd_mentorias">
+    <th mat-header-cell *matHeaderCellDef>Quantidade de Mentorias</th>
+    <td mat-cell *matCellDef="let mentor">{{ mentor.qtd_mentorias }}</td>
+  </ng-container>
 
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="qtd_abs_experiencias">
-      <th mat-header-cell *matHeaderCellDef> Quantidade Absoluta de Tags </th>
-      <td mat-cell *matCellDef="let mentor"> {{mentor.qtd_abs_experiencias}} </td>
-    </ng-container>
-  
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let mentor; columns: displayedColumns;"></tr>
-  </table>
-  
-  
+  <!-- Weight Column -->
+  <ng-container matColumnDef="taxa_mentorias">
+    <th mat-header-cell *matHeaderCellDef>Taxa de Mentorias</th>
+    <td mat-cell *matCellDef="let mentor">{{ mentor.taxa_mentorias }} %</td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="qtd_experiencias">
+    <th mat-header-cell *matHeaderCellDef>Quantidade de Tags</th>
+    <td mat-cell *matCellDef="let mentor">{{ mentor.qtd_experiencias }}</td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="qtd_abs_experiencias">
+    <th mat-header-cell *matHeaderCellDef>Quantidade Absoluta de Tags</th>
+    <td mat-cell *matCellDef="let mentor">{{ mentor.qtd_abs_experiencias }}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let mentor; columns: displayedColumns"></tr>
+</table>
