@@ -6,6 +6,7 @@ export class MentorModel implements MentorInterface {
   isMentee = false;
   isAdmin = false;
   email: String;
+  phone: String;
   _id: String;
   token: String = "";
   password: String = "";
@@ -14,9 +15,11 @@ export class MentorModel implements MentorInterface {
     birthDate: Date,
     tags: String[],
     email: String,
+    phone: String,
     id: String,
     mentor: MentorProperty
   ) {
+      this.tags = tags;
     this.name = name;
     this.birthDate = birthDate;
     this.tags = mentor?.tags;
@@ -24,6 +27,7 @@ export class MentorModel implements MentorInterface {
     this._id = id;
     this.mentor = mentor;
     this.cargo = mentor?.cargo;
+    this.phone = phone;
   }
   clone(): UserModel {
     return { ...this };
@@ -41,6 +45,7 @@ export class MentorModel implements MentorInterface {
           mentor.birthDate,
           mentor.tags,
           mentor.email,
+          mentor.phone,
           mentor._id,
           mentor.mentor
         )

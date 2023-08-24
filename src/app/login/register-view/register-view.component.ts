@@ -32,7 +32,7 @@ export class RegisterViewComponent {
     private routingProxy: RoutingProxy
   ) {
     this.registerForm = this.formBuilder.group(
-      this.formFactory.make("", "", "", new Date(), "Mentorado", [""], "")
+      this.formFactory.make("", "", "", "", new Date(), "Mentorado", [""], "")
     );
   }
 
@@ -61,7 +61,8 @@ export class RegisterViewComponent {
       registerForm.birthDate,
       isMentor,
       !isMentor,
-      registerForm.password
+      registerForm.password,
+      registerForm.phone,
     );
     if (isMentor) {
       user.tags = this.experiences;

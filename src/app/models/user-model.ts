@@ -9,9 +9,11 @@ export class UserModel implements UserInterface {
   isMentor: boolean;
   isMentee: boolean;
   password: String;
+  phone: String;
   tags: String[] = [];
   cargo: String = "";
   isAdmin: boolean;
+  mentor: MentorProperty;
 
   constructor(
     email: String,
@@ -22,10 +24,11 @@ export class UserModel implements UserInterface {
     isMentor: boolean,
     isMentee: boolean,
     password: String,
+    phone: String,
     mentor?: MentorProperty,
     tags?: String[],
     cargo?: String,
-    isAdmin: boolean = false
+    isAdmin: boolean = false,
   ) {
     this.mentor = mentor ? mentor : { tags: [], cargo: "" };
     this.email = email;
@@ -36,11 +39,11 @@ export class UserModel implements UserInterface {
     this.isMentee = isMentee;
     this.isMentor = isMentor;
     this.password = password;
+    this.phone = phone;
     this.tags = tags ? tags : [];
     this.cargo = cargo ? cargo : "";
     this.isAdmin = isAdmin;
   }
-  mentor: MentorProperty;
 
   clone(): UserModel {
     return { ...this };
@@ -57,6 +60,7 @@ export interface UserInterface {
   _id: String;
   token: String;
   password: String;
+  phone: String,
   mentor: MentorProperty;
   tags: String[];
   cargo: String;
