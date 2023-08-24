@@ -12,7 +12,6 @@ export class UserFormGroupFactory {
     phone: String,
     birthDate: Date,
     accountType: String,
-    experiences: String[],
     cargo: String
   ) {
     return {
@@ -23,7 +22,6 @@ export class UserFormGroupFactory {
       confirmPassword: [password, Validators.required],
       birthDate: [birthDate, Validators.required],
       accountType: [accountType, Validators.required],
-      experiences: [experiences],
       cargo: [cargo],
     };
   }

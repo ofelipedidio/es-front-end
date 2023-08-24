@@ -28,4 +28,10 @@ export class TagsServiceService {
   getUntreatedTags(): Observable<TagProperty[]> {
     return this.http.get<TagProperty[]>(baseurl + "findAllUn");
   }
+
+  getAllTreatedTags(): Observable<TagProperty[]> {
+      return this.http.get<TagProperty[]>(
+          baseurl + 'findAll'
+      );
+  }
 }
